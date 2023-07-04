@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/06/29 22:05:06 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/07/03 22:02:42 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,9 @@ SRCS			= \
 		actions_r.c \
 		actions_rr.c \
 		polar_sort.c \
-		bisection_sort.c \
-		sorts_utils.c \
+		sort_utils.c \
+		sort_stack.c \
+		mixed_sort.c \
 	) \
 	$(addprefix $(DIR)/utils/, \
 		ft_atoi.c \

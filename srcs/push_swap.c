@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:21:34 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/29 21:08:27 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:17:26 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ int	setdata(t_stackset *stackset, int array[], int n)
 	return (0);
 }
 
-void	sort_finalize(t_stackset *stackset)
-{
-	while (&stackset->b == stackset->b.tail)
-		do_pa(stackset);
-}
-
 void	push_swap(int array[], int n)
 {
 	t_stackset	stackset;
@@ -45,5 +39,5 @@ void	push_swap(int array[], int n)
 	}
 	else
 		ft_printf("error");
-	fin_stackset(&stackset);
+	finl_stackset(&stackset);
 }

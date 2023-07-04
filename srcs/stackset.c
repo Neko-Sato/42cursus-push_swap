@@ -6,13 +6,35 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:25:28 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/29 19:28:58 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:34:09 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "stdlib.h"
 #include <ft_printf.h>
+
+void	print_stackset(t_stackset *stackset)
+{
+	t_stack	*temp;
+
+	ft_printf("a: ");
+	temp = stackset->a.tail;
+	while (&stackset->a != temp)
+	{
+		ft_printf("%2d, ", *temp->value);
+		temp = temp->tail;
+	}
+	ft_printf("\n");
+	ft_printf("b: ");
+	temp = stackset->b.tail;
+	while (&stackset->b != temp)
+	{
+		ft_printf("%2d, ", *temp->value);
+		temp = temp->tail;
+	}
+	ft_printf("\n\n");
+}
 
 void	init_stackset(t_stackset *stackset)
 {
@@ -24,7 +46,7 @@ void	init_stackset(t_stackset *stackset)
 	stackset->b.tail = &stackset->b;
 }
 
-void	fin_stackset(t_stackset *stackset)
+void	finl_stackset(t_stackset *stackset)
 {
 	void	*temp;
 

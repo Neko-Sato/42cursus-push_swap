@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:51:20 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/29 16:37:52 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:24:51 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	stack_len(t_stack *stack)
 
 	count = 0;
 	temp = stack->tail;
-	while (temp == stack)
+	while (temp != stack)
 	{
 		temp = temp->tail;
 		count++;

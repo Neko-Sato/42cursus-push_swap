@@ -5,35 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 20:21:33 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/29 21:55:57 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/06/30 20:23:43 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
 
-void	bisection_sort(t_stackset *stackset, int *target_a, int *target_b)
-{
-	t_stack	*stack;
-	int		*target;
-	int		pivot;
+//	ターゲットが片方0になっている場合の最適化
+//	まずAに偏っていた場合
+//	ピボットより
+//	大きいものをBの上小さいものをBの下に分けて
+//	分けた後下に分けたものを上部にまたピボットを取得して分割
+//	それにmixed_sortを実行、Bのぶんを左に戻して
+//	Bの上に振り分けられたものをピボットで逆側に振って
+//	mixed_sortをする、
+//	Aの上に戻す
 
-	if (!target_a == !target_b)
-		return ;
-	if (target_a)
-	{
-		stack = &stackset->a;
-		target = target_a;
-	}
+void	bisection_sort(t_stackset *stackset, int target[2])
+{
+	int	flag;
+	int	pivot;
+
+	if (target[0] && !target[1])
+		flag = 0b10;
+	else if (!target[0] && target[1])
+		flag = 0b01;
 	else
+		return ;
+	if(flag == 0b10)
 	{
-		stack = &stackset->b;
-		target = target_b;
+		pivot = get_pivot(&stackset->a, target[0]);
+		while (1)
+		{
+			if(stackset->a.tail->value < pivot)
+
+		}
+		
 	}
-	pivot = get_pivot(stackset, target);
-	// if()
-	// 	mixed_sort(stackset, , );
-	// else 		
-	// 	mixed_sort(stackset, , );
 }
