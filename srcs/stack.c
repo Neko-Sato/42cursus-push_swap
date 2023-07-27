@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:51:20 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/30 00:24:51 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 05:00:52 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ t_stack	*new_stack_element(void *value)
 	return (new);
 }
 
-void	push_stack(t_stack *stack, t_stack *new)
+void	push_stack(t_stack *stack, t_stack *element)
 {
-	if (!new)
+	if (!element)
 		return ;
-	new->head = stack;
-	new->tail = stack->tail;
-	new->head->tail = new;
-	new->tail->head = new;
+	element->head = stack;
+	element->tail = stack->tail;
+	element->head->tail = element;
+	element->tail->head = element;
 }
 
 t_stack	*pop_stack(t_stack *stack)
