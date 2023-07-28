@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:20:07 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:30:35 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	do_sa(t_stack stackset[2])
 	push_stack(&stackset[0], temp[0]);
 	push_stack(&stackset[0], temp[1]);
 	ft_printf("sa\n");
+	print_stackset(stackset);
 }
 
 void	do_sb(t_stack stackset[2])
@@ -33,6 +34,7 @@ void	do_sb(t_stack stackset[2])
 	push_stack(&stackset[1], temp[0]);
 	push_stack(&stackset[1], temp[1]);
 	ft_printf("sb\n");
+	print_stackset(stackset);
 }
 
 void	do_ss(t_stack stackset[2])
@@ -48,6 +50,7 @@ void	do_ss(t_stack stackset[2])
 	push_stack(&stackset[1], temp[2]);
 	push_stack(&stackset[1], temp[3]);
 	ft_printf("ss\n");
+	print_stackset(stackset);
 }
 
 void do_s_(t_stack stackset[2], int slect)

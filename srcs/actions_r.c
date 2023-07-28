@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:19:27 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:30:20 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	do_ra(t_stack stackset[2])
 	temp = pop_stack(&stackset[0]);
 	push_stack(stackset[0].head, temp);
 	ft_printf("ra\n");
+	print_stackset(stackset);
 }
 
 void	do_rb(t_stack stackset[2])
@@ -29,6 +30,7 @@ void	do_rb(t_stack stackset[2])
 	temp = pop_stack(&stackset[1]);
 	push_stack(stackset[1].head, temp);
 	ft_printf("rb\n");
+	print_stackset(stackset);
 }
 
 void	do_rr(t_stack stackset[2])
@@ -40,6 +42,7 @@ void	do_rr(t_stack stackset[2])
 	temp[1] = pop_stack(&stackset[1]);
 	push_stack(stackset[1].head, temp[1]);
 	ft_printf("rr\n");
+	print_stackset(stackset);
 }
 
 void do_r_(t_stack stackset[2], int slect)

@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:53:35 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 10:28:56 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:36:00 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	mixed_sort(t_stack stackset[2], int target[2])
 	}
 }
 
+// stackBの方のみターゲットを読み切る
 static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
 		int record[2])
 {
@@ -55,15 +56,17 @@ static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
 	if (flag & 0b10)
 		next_push[1] = NULL;
 	do_p_(stackset, flag);
-	do_rr_(stackset, flag);
+	do_r_(stackset, flag);
 	target[0] -= !!(flag & 0b01);
 	target[1] -= !!(flag & 0b10);
 	record[0] += !!(flag & 0b10);
 	record[1] += !!(flag & 0b01);
 	if (flag != 0b11)
 	{
-		flag = !!next_push[0] << 1 | !!next_push[1];
-		do_rr_(stackset, flag);
+		flag = !!next_push[0] << 1
+			| (((~flag & 0b01) && !!next_push[1])
+				|| (!next_push[1] && (0 < target[1])));
+		do_r_(stackset, flag);
 		target[0] -= !!(flag & 0b10);
 		target[1] -= !!(flag & 0b01);
 		record[0] += !!(flag & 0b10);
@@ -74,7 +77,6 @@ static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
 static void	divide(t_stack stackset[2], int target[2], int pivot[2],
 		int record[2])
 {
-	int		i;
 	int		completed;
 	t_stack	**next_push;
 
@@ -82,19 +84,21 @@ static void	divide(t_stack stackset[2], int target[2], int pivot[2],
 	next_push = (t_stack *[]){NULL, NULL};
 	while (1)
 	{
-		i = 0;
-		while (i < 2)
+		if (!next_push[0] && (~completed & 0b10))
 		{
-			if (!next_push[i] && (~completed & (2 - i)))
-			{
-				next_push[i] = stack_find(&stackset[i], target[i],
-						(t_callable){stack_lt, &pivot[i]});
-				if (!next_push[i])
-					completed |= 2 - i;
-			}
-			i++;
+			next_push[0] = stack_find(&stackset[0], target[0],
+					(t_callable){stack_lt, &pivot[0]});
+			if (!next_push[0])
+				completed |= 0b10;
 		}
-		if (completed == 0b11)
+		if (!next_push[1] && (~completed & 0b01))
+		{
+			next_push[1] = stack_find(&stackset[1], target[1],
+					(t_callable){stack_lt, &pivot[1]});
+			if (!next_push[1])
+				completed |= 0b01;
+		}
+		if ((completed & 0b10) && !target[1])
 			break ;
 		move_back(stackset, next_push, target, record);
 	}
@@ -107,7 +111,7 @@ static void	expand_edge(t_stack stackset[2], int pivot[2], int target[2],
 
 	while (record[0]--)
 	{
-		do_ra(stackset);
+		do_rra(stackset);
 		temp = pivot[0] > *stackset[0].tail->value;
 		if (temp)
 			do_pb(stackset);
@@ -135,7 +139,7 @@ static void	expand_middle(t_stack stackset[2], int pivot[2], int target[2],
 	sub_target = (int []){0, 0};
 	while (record[1]--)
 	{
-		do_rb(stackset);
+		do_rrb(stackset);
 		temp = pivot[1] < *stackset[1].tail->value;
 		if (temp)
 			do_pa(stackset);

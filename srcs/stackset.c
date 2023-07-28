@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:25:28 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:31:37 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:31:31 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_stackset(t_stack stackset[2])
 		ft_printf("\n");
 		i++;
 	}
-	ft_printf("\n\n");
+	ft_printf("\n");
 }
 
 void	init_stackset(t_stack stackset[2])

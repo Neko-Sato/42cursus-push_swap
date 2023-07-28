@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 10:42:52 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:42:43 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,22 @@ static void	divide(t_stack stackset[2], int flag, int target[2], int *record)
 		if (!next_push)
 		{
 			next_push = stack_find(&stackset[2 - flag], target[2 - flag],
-					(t_callable){(void *[]){stack_gt, stack_lt}[2 - flag],
+					(t_callable){(void *[]){stack_lt, stack_gt}[2 - flag],
 					&pivot});
 			if (!next_push)
 				break ;
 		}
+		target[2 - flag]--;
 		temp = stackset[2 - flag].tail == next_push;
 		if (temp)
+		{
 			do_p_(stackset, 3 - flag);
+			next_push = NULL;
+		}
 		else
 			do_r_(stackset, flag);
-		target[2 - flag]--;
-		*record += !temp;
 		target[flag - 1] += temp;
+		*record += !temp;
 	}
 }
 
