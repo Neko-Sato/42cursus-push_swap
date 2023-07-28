@@ -6,45 +6,49 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:53:35 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/04 00:27:06 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 07:53:09 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
+#include "actions.h"
 #include <ft_printf.h>
 
-static void	divide(t_stackset *stackset, int target[2], int pivot[2],
+static void	divide(t_stack stackset[2], int target[2], int pivot[2],
 				int record[2]);
-static void	expand_edge(t_stackset *stackset, int pivot[2], int target[2],
+static void	expand_edge(t_stack stackset[2], int pivot[2], int target[2],
 				int record[2]);
-static void	expand_middle(t_stackset *stackset, int pivot[2], int target[2],
+static void	expand_middle(t_stack stackset[2], int pivot[2], int target[2],
 				int record[2]);
 
-void	mixed_sort(t_stackset *stackset, int target[2])
+void	mixed_sort(t_stack stackset[2], int target[2])
 {
 	int	*pivot;
 	int	*record;
 
-	if (polar_sort(stackset, target))
-		return ;
-	pivot = (int[]){
-		get_pivot(&stackset->a, target[0]),
-		get_pivot(&stackset->b, target[1])};
-	record = (int[]){0, 0};
-	print_stackset(stackset);
-	divide(stackset, target, pivot, record);
-	print_stackset(stackset);
-	expand_edge(stackset, pivot, target, record);
-	expand_middle(stackset, pivot, target, record);
+	if (3 < target[0] && 3 < target[1])
+	{
+		record = (int []){0, 0};
+		pivot = (int []){get_pivot(&stackset[0], target[0], 0),
+			get_pivot(&stackset[1], target[1], 0)};
+		divide(stackset, target, pivot, record);
+		expand_edge(stackset, pivot, target, record);
+		expand_middle(stackset, pivot, target, record);
+	}
+	else
+	{
+		polar_sort(stackset, target);
+	}
 }
 
-static void	move_back(t_stackset *stackset, t_stack *next_push[2],
-		int target[2], int record[2])
+static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
+		int record[2])
 {
 	int	flag;
 
-	flag = (stackset->a.tail == next_push[0]) | (stackset->b.tail == next_push[1]) << 1;
+	flag = (stackset[0].tail == next_push[0])
+		| (stackset[1].tail == next_push[1]) << 1;
 	if (flag & 0b01)
 		next_push[0] = NULL;
 	if (flag & 0b10)
@@ -66,9 +70,10 @@ static void	move_back(t_stackset *stackset, t_stack *next_push[2],
 	}
 }
 
-static void	divide(t_stackset *stackset, int target[2], int pivot[2],
+static void	divide(t_stack stackset[2], int target[2], int pivot[2],
 		int record[2])
 {
+	int		i;
 	int		completed;
 	t_stack	**next_push;
 
@@ -76,19 +81,17 @@ static void	divide(t_stackset *stackset, int target[2], int pivot[2],
 	next_push = (t_stack *[]){NULL, NULL};
 	while (1)
 	{
-		if (!next_push[0] && (~completed & 0b10))
+		i = 0;
+		while (i < 2)
 		{
-			next_push[0] = stack_find(&stackset->a, target[0], stack_lt,
-					&pivot[0]);
-			if (!next_push[0])
-				completed |= 0b10;
-		}
-		if (!next_push[1] && (~completed & 0b01))
-		{
-			next_push[1] = stack_find(&stackset->b, target[1], stack_lt,
-					&pivot[1]);
-			if (!next_push[1])
-				completed |= 0b01;
+			if (!next_push[i] && (~completed & (2 - i)))
+			{
+				next_push[i] = stack_find(&stackset[i], target[i],
+						(t_callable){stack_lt, &pivot[i]});
+				if (!next_push[i])
+					completed |= 2 - i;
+			}
+			i++;
 		}
 		if (completed == 0b11)
 			break ;
@@ -96,7 +99,7 @@ static void	divide(t_stackset *stackset, int target[2], int pivot[2],
 	}
 }
 
-static void	expand_edge(t_stackset *stackset, int pivot[2], int target[2],
+static void	expand_edge(t_stack stackset[2], int pivot[2], int target[2],
 		int record[2])
 {
 	int	temp;
@@ -104,30 +107,35 @@ static void	expand_edge(t_stackset *stackset, int pivot[2], int target[2],
 	while (record[0]--)
 	{
 		do_ra(stackset);
-		temp = pivot[0] > *stackset->a.tail->value;
+		temp = pivot[0] > *stackset[0].tail->value;
 		if (temp)
 			do_pb(stackset);
 		target[temp]++;
 	}
 	mixed_sort(stackset, target);
-	while (target[0]--)
+	while (1)
 	{
+		temp = (*stackset[0].tail->value < pivot[0])
+			- (*stackset[1].tail->value > pivot[0]);
+		if (!temp)
+			break ;
+		target[temp > 0]--;
 		do_pb(stackset);
-		target[1]++;
+		target[temp < 0]++;
 	}
 }
 
-static void	expand_middle(t_stackset *stackset, int pivot[2], int target[2],
+static void	expand_middle(t_stack stackset[2], int pivot[2], int target[2],
 		int record[2])
 {
 	int	temp;
 	int	*sub_target;
 
-	sub_target = (int[]){0, 0};
+	sub_target = (int []){0, 0};
 	while (record[1]--)
 	{
 		do_rb(stackset);
-		temp = pivot[1] < *stackset->b.tail->value;
+		temp = pivot[1] < *stackset[1].tail->value;
 		if (temp)
 			do_pa(stackset);
 		sub_target[!temp]++;

@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:20:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:00:38 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 07:02:35 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_stack
 	int				*value;
 	struct s_stack	*head;
 	struct s_stack	*tail;
-	int				flag;
 }					t_stack;
 
 void				print_stackset(t_stack stackset[2]);

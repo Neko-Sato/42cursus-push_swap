@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:21:34 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/30 00:17:26 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 05:36:43 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "stack.h"
 #include <ft_printf.h>
 
-int	setdata(t_stackset *stackset, int array[], int n)
+int	setdata(t_stack stackset[2], int array[], int n)
 {
 	void	*element;
 
@@ -24,20 +24,20 @@ int	setdata(t_stackset *stackset, int array[], int n)
 		element = new_stack_element(&array[n]);
 		if (!element)
 			return (1);
-		push_stack(&stackset->a, element);
+		push_stack(&stackset[0], element);
 	}
 	return (0);
 }
 
 void	push_swap(int array[], int n)
 {
-	t_stackset	stackset;
+	t_stack	stackset[2];
 
-	if (!setdata(&stackset, array, n))
+	if (!setdata(stackset, array, n))
 	// mixed_sort(&stackset);
 	{
 	}
 	else
 		ft_printf("error");
-	finl_stackset(&stackset);
+	finl_stackset(stackset);
 }
