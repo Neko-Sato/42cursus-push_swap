@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:22:43 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 07:20:55 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:28:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_stack	*stack_find(t_stack *stack, int target, t_callable callable);
 //	sorts..
 void	mixed_sort(t_stack stackset[2], int target[2]);
 void	polar_sort(t_stack stackset[2], int target[2]);
+void	bisection_sort(t_stack stackset[2], int target[2]);
 
 #endif

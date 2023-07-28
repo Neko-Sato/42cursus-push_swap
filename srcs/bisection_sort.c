@@ -6,12 +6,16 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 09:59:47 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:42:52 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
+#include "actions.h"
+
+static void	divide(t_stack stackset[2], int flag, int target[2], int *record);
+static void	expand(t_stack stackset[2], int flag, int target[2], int *record);
 
 void	bisection_sort(t_stack stackset[2], int target[2])
 {
@@ -19,11 +23,11 @@ void	bisection_sort(t_stack stackset[2], int target[2])
 	int		flag;
 	int		record;
 
-	flag = (target[0] <= 3) << 1 | (target[1] <= 3);
-	if (flag & 0b10 == flag & 0b01)
+	flag = (3 < target[0]) << 1 | (3 < target[1]);
+	if ((flag & 0b10) == (flag & 0b01))
 		return ;
-	sub_target = (int []){!(flag & 0b10) * target[0],
-		!(flag & 0b01) * target[1]};
+	sub_target = (int []){!!(flag & 0b10) * target[0],
+		!!(flag & 0b01) * target[1]};
 	record = 0;
 	divide(stackset, flag, sub_target, &record);
 	expand(stackset, flag, sub_target, &record);

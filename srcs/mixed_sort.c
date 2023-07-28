@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:53:35 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 07:53:09 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:28:56 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	mixed_sort(t_stack stackset[2], int target[2])
 	else
 	{
 		polar_sort(stackset, target);
+		bisection_sort(stackset, target);
 	}
 }
 

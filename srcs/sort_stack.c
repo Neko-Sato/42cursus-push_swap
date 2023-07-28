@@ -6,11 +6,12 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:49:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 07:53:17 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:22:19 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "actions.h"
 
 int	stack_lt(int value, void *pivot)
 {

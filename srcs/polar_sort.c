@@ -6,12 +6,13 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:31:26 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:48:31 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:22:07 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
+#include "actions.h"
 
 static int	check_do_s(t_stack stackset[2], int flag);
 static void	update_flag(t_stack stackset[2], int target[2], int *flag);
