@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/29 16:19:38 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:48:56 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 #include "actions.h"
 #include <ft_printf.h>
 
-extern int rank;
-
 void	do_pa(t_stack stackset[2])
 {
 	push_stack(&stackset[0], pop_stack(&stackset[1]));
-	for (int i=0; i<rank; i++)
-		ft_printf("-");
 	ft_printf("pa\n");
-	print_stackset(stackset);
+	if (STACK_PRINT)
+		print_stackset(stackset);
 }
 
 void	do_pb(t_stack stackset[2])
 {
 	push_stack(&stackset[1], pop_stack(&stackset[0]));
-	for (int i=0; i<rank; i++)
-		ft_printf("-");
 	ft_printf("pb\n");
-	print_stackset(stackset);
+	if (STACK_PRINT)
+		print_stackset(stackset);
 }
 
 void	do_pp(t_stack stackset[2])
@@ -41,21 +37,21 @@ void	do_pp(t_stack stackset[2])
 	temp = 0;
 	temp |= (stackset[0].tail != &stackset[0]) << 1;
 	temp |= (stackset[0].tail != &stackset[0]);
-	if(temp == 0b11)
+	if (temp == 0b11)
 	{
 		do_pa(stackset);
 		do_sa(stackset);
 		do_pb(stackset);
 	}
-	else if(temp == 0b10)
+	else if (temp == 0b10)
 		do_pb(stackset);
-	else if(temp == 0b01)
+	else if (temp == 0b01)
 		do_pa(stackset);
 }
 
-void do_p_(t_stack stackset[2], int slect)
+void	do_p_(t_stack stackset[2], int slect)
 {
-	if(slect == 0b11)
+	if (slect == 0b11)
 		do_pp(stackset);
 	else if (slect == 0b10)
 		do_pa(stackset);

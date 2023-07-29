@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/07/28 10:28:34 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/07/30 02:22:28 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ test: test.c $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
 
 .PHONY: norm
-norm: $(SRCS)
+norm: $(SRCS) $(INCS_DIR)
 	@norminette $^
 
 .PHONY: $(FT_PRINTF)

@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:49:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/29 18:52:48 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:07:05 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	init_sort(t_stack stackset[2])
 	while (len)
 	{
 		if (!next_push)
-			next_push = stack_find(&stackset[0], len, (t_callable){stack_lt, &pivot});
+			next_push = stack_find(&stackset[0], len,
+					(t_callable){stack_lt, &pivot});
 		if (!next_push)
 			break ;
 		if (stackset[0].tail == next_push)

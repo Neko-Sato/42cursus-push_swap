@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 05:21:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 05:23:23 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:54:53 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define ACTIONS_H
 
 # include "stack.h"
+
+# ifdef DEBUG
+#  define STACK_PRINT 1
+# else
+#  define STACK_PRINT 0
+# endif
 
 void	do_pa(t_stack stackset[2]);
 void	do_pb(t_stack stackset[2]);

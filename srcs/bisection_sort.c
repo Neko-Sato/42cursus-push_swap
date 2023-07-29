@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/29 19:42:41 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:00:09 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 static int	divide(t_stack stackset[2], int flag, int target[2], int *record);
 static void	expand(t_stack stackset[2], int flag, int target[2], int *record);
-
-extern int rank;
 
 void	bisection_sort(t_stack stackset[2], int target[2])
 {
@@ -35,9 +33,7 @@ void	bisection_sort(t_stack stackset[2], int target[2])
 	record = 0;
 	pivot = divide(stackset, flag, sub_target, &record);
 	expand(stackset, flag, sub_target, &record);
-	/**/rank++; ft_printf("rank%d start mixed_sort: %d, %d\n", rank ,sub_target[0], sub_target[1]);
 	mixed_sort(stackset, sub_target, pivot);
-	/**/ft_printf("rank%d end mixed_sort: %d, %d\n", rank ,sub_target[0], sub_target[1]); rank--;
 	while (sub_target[flag - 1]--)
 	{
 		do_p_(stackset, flag);
