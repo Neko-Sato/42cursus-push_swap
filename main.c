@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 04:13:07 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 04:26:06 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,7 @@
 #include <ft_printf.h>
 #include <stdlib.h>
 
-static int	isNumber(const char *src)
-{
-	if (*src == '-' || *src == '+')
-		src++;
-	return (ft_isdigit(*src));
-}
-
-int	pars_args(int *dst, char *src[], int n)
-{
-	while (n--)
-	{
-		if (!isNumber(src[n]))
-			return (1);
-		dst[n] = ft_atoi(src[n]);
-	}
-	return (0);
-}
+static int	pars_args(int *dst, char *src[], int n);
 
 int	main(int argc, char *argv[])
 {
@@ -43,4 +27,22 @@ int	main(int argc, char *argv[])
 	else
 		ft_printf("Error\n");
 	free(args);
+}
+
+static int	isnumber(const char *src)
+{
+	if (*src == '-' || *src == '+')
+		src++;
+	return (ft_isdigit(*src));
+}
+
+static int	pars_args(int *dst, char *src[], int n)
+{
+	while (n--)
+	{
+		if (!isnumber(src[n]))
+			return (1);
+		dst[n] = ft_atoi(src[n]);
+	}
+	return (0);
 }

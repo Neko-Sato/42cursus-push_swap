@@ -6,13 +6,13 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 01:00:09 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 04:41:54 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "actions.h"
 #include "push_swap.h"
 #include "stack.h"
-#include "actions.h"
 #include <ft_printf.h>
 
 static int	divide(t_stack stackset[2], int flag, int target[2], int *record);
@@ -20,10 +20,10 @@ static void	expand(t_stack stackset[2], int flag, int target[2], int *record);
 
 void	bisection_sort(t_stack stackset[2], int target[2])
 {
-	int		*sub_target;
-	int		pivot;
-	int		flag;
-	int		record;
+	int	*sub_target;
+	int	pivot;
+	int	flag;
+	int	record;
 
 	flag = (3 < target[0]) << 1 | (3 < target[1]);
 	if ((flag & 0b10) == (flag & 0b01))
@@ -42,11 +42,28 @@ void	bisection_sort(t_stack stackset[2], int target[2])
 	target[2 - flag] = sub_target[2 - flag];
 }
 
+static void	move(t_stack stackset[2], int flag, int *vars[],
+	t_stack **next_push)
+{
+	int	temp;
+
+	vars[0][2 - flag]--;
+	temp = stackset[2 - flag].tail == *next_push;
+	if (temp)
+	{
+		do_p_(stackset, 3 - flag);
+		*next_push = NULL;
+	}
+	else
+		do_r_(stackset, flag);
+	vars[0][flag - 1] += temp;
+	*vars[1] += !temp;
+}
+
 static int	divide(t_stack stackset[2], int flag, int target[2], int *record)
 {
 	int		pivot;
 	t_stack	*next_push;
-	int		temp;
 
 	pivot = get_pivot(&stackset[2 - flag], target[2 - flag], 0);
 	next_push = NULL;
@@ -60,17 +77,7 @@ static int	divide(t_stack stackset[2], int flag, int target[2], int *record)
 			if (!next_push)
 				break ;
 		}
-		target[2 - flag]--;
-		temp = stackset[2 - flag].tail == next_push;
-		if (temp)
-		{
-			do_p_(stackset, 3 - flag);
-			next_push = NULL;
-		}
-		else
-			do_r_(stackset, flag);
-		target[flag - 1] += temp;
-		*record += !temp;
+		move(stackset, flag, (int *[]){target, record}, &next_push);
 	}
 	return (pivot);
 }
