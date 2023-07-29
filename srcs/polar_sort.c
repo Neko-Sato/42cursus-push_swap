@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:31:26 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 03:37:09 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 06:25:15 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	polar_sort(t_stack stackset[2], int target[2])
 
 	flag = (target[0] <= 3) << 1 | (target[1] <= 3);
 	update_flag(stackset, target, &flag);
-	do_s_(stackset, check_do_s(stackset, flag));
+	do_s_(stackset, check_do_s(stackset, flag), 1);
 	update_flag(stackset, target, &flag);
-	do_r_(stackset, flag);
-	do_s_(stackset, flag);
-	do_rr_(stackset, flag);
+	do_r_(stackset, flag, 1);
+	do_s_(stackset, flag, 1);
+	do_rr_(stackset, flag, 1);
 	update_flag(stackset, target, &flag);
-	do_s_(stackset, check_do_s(stackset, flag));
+	do_s_(stackset, check_do_s(stackset, flag), 1);
 }
 
 static int	check_do_s(t_stack stackset[2], int flag)

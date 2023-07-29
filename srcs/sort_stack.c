@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:49:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 01:07:05 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 06:25:30 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int	init_sort(t_stack stackset[2])
 			break ;
 		if (stackset[0].tail == next_push)
 		{
-			do_pb(stackset);
+			do_pb(stackset, 1);
 			next_push = NULL;
 		}
 		else
-			do_ra(stackset);
+			do_ra(stackset, 1);
 		len--;
 	}
 	return (pivot);
@@ -54,5 +54,5 @@ int	init_sort(t_stack stackset[2])
 void	finl_sort(t_stack stackset[2])
 {
 	while (&stackset[1] != stackset[1].tail)
-		do_pa(stackset);
+		do_pa(stackset, 1);
 }

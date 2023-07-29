@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 04:41:54 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 06:27:23 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	bisection_sort(t_stack stackset[2], int target[2])
 	mixed_sort(stackset, sub_target, pivot);
 	while (sub_target[flag - 1]--)
 	{
-		do_p_(stackset, flag);
+		do_p_(stackset, flag, 1);
 		sub_target[2 - flag]++;
 	}
 	target[2 - flag] = sub_target[2 - flag];
@@ -51,11 +51,11 @@ static void	move(t_stack stackset[2], int flag, int *vars[],
 	temp = stackset[2 - flag].tail == *next_push;
 	if (temp)
 	{
-		do_p_(stackset, 3 - flag);
+		do_p_(stackset, 3 - flag, 1);
 		*next_push = NULL;
 	}
 	else
-		do_r_(stackset, flag);
+		do_r_(stackset, flag, 1);
 	vars[0][flag - 1] += temp;
 	*vars[1] += !temp;
 }
@@ -86,7 +86,7 @@ static void	expand(t_stack stackset[2], int flag, int target[2], int *record)
 {
 	while ((*record)--)
 	{
-		do_rr_(stackset, flag);
+		do_rr_(stackset, flag, 1);
 		target[2 - flag]++;
 	}
 }

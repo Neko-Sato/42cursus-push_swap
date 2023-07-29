@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:22:43 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 01:49:22 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 05:40:58 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 //	push_swap.c
 void	push_swap(int array[], int n);
 int		setdata(t_stack stackset[2], int array[], int n);
+
+//	checker.c
+void	checker(int array[], int n);
 
 //	sort_stack.c 
 int		stack_lt(int value, void *pivot);

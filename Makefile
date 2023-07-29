@@ -6,20 +6,25 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/07/30 04:20:10 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/07/30 06:41:31 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= push_swap
+BONUS_NAME		= checker
+
 DIR				= .
 FT_PRINTF		= $(DIR)/libftprintf
 INCS_DIR		= $(DIR)/includes
 OBJS_DIR		= $(DIR)/objs
+
 MAIN			= $(DIR)/main.c
+BONUS_MAIN		= $(DIR)/bonus_main.c
 
 SRCS			= \
 	$(addprefix $(DIR)/srcs/, \
 		push_swap.c \
+		checker.c \
 		stack.c \
 		stackset.c \
 		actions_p.c \
@@ -35,7 +40,12 @@ SRCS			= \
 	$(addprefix $(DIR)/utils/, \
 		ft_atoi.c \
 		ft_isdigit.c \
-	) \
+		ft_strncmp.c \
+	)\
+	$(addprefix $(DIR)/get_next_line/, \
+		get_next_line.c \
+		get_next_line_utils.c \
+	)\
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -45,6 +55,7 @@ LDFLAGS			= -L$(FT_PRINTF)
 IDFLAGS			= -I$(FT_PRINTF)
 LIBS			= -lftprintf
 IDFLAGS			+= -I$(INCS_DIR)
+IDFLAGS			+= -I./get_next_line
 
 .PHONY: all clean fclean re bonus
 
@@ -52,6 +63,9 @@ all: $(FT_PRINTF) $(NAME)
 
 $(NAME): $(MAIN) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
+
+bonus: $(BONUS_MAIN) $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $(BONUS_NAME) $(LIBS)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -62,7 +76,7 @@ clean:
 
 fclean: clean
 	@make -C $(FT_PRINTF) fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS_NAME)
 
 re: fclean all
 

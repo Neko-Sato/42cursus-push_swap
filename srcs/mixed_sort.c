@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:53:35 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 01:06:25 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 06:24:54 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
 		next_push[0] = NULL;
 	if (flag & 0b10)
 		next_push[1] = NULL;
-	do_p_(stackset, flag);
-	do_r_(stackset, flag);
+	do_p_(stackset, flag, 1);
+	do_r_(stackset, flag, 1);
 	target[0] -= !!(flag & 0b01);
 	target[1] -= !!(flag & 0b10);
 	record[0] += !!(flag & 0b10);
@@ -64,7 +64,7 @@ static void	move_back(t_stack stackset[2], t_stack *next_push[2], int target[2],
 	{
 		flag = !!next_push[0] << 1 | (!!next_push[1]
 				|| (!(flag & 0b10) && !!target[1]));
-		do_r_(stackset, flag);
+		do_r_(stackset, flag, 1);
 		target[0] -= !!(flag & 0b10);
 		target[1] -= !!(flag & 0b01);
 		record[0] += !!(flag & 0b10);
@@ -109,10 +109,10 @@ static void	expand_edge(t_stack stackset[2], int partition, int target[2],
 
 	while (record[0]--)
 	{
-		do_rra(stackset);
+		do_rra(stackset, 1);
 		temp = partition > *stackset[0].tail->value;
 		if (temp)
-			do_pb(stackset);
+			do_pb(stackset, 1);
 		target[temp]++;
 	}
 	mixed_sort(stackset, target, partition);
@@ -123,7 +123,7 @@ static void	expand_edge(t_stack stackset[2], int partition, int target[2],
 		if (!temp)
 			break ;
 		target[temp > 0]--;
-		do_p_(stackset, (3 * !!temp - temp) / 2);
+		do_p_(stackset, (3 * !!temp - temp) / 2, 1);
 		target[temp < 0]++;
 	}
 }
@@ -137,10 +137,10 @@ static void	expand_middle(t_stack stackset[2], int partition, int target[2],
 	sub_target = (int []){0, 0};
 	while (record[1]--)
 	{
-		do_rrb(stackset);
+		do_rrb(stackset, 1);
 		temp = partition < *stackset[1].tail->value;
 		if (temp)
-			do_pa(stackset);
+			do_pa(stackset, 1);
 		sub_target[!temp]++;
 	}
 	mixed_sort(stackset, sub_target, partition);
@@ -151,7 +151,7 @@ static void	expand_middle(t_stack stackset[2], int partition, int target[2],
 		if (!temp)
 			break ;
 		target[temp > 0]--;
-		do_p_(stackset, (3 * !!temp - temp) / 2);
+		do_p_(stackset, (3 * !!temp - temp) / 2, 1);
 		target[temp < 0]++;
 	}
 	target[0] += sub_target[0];
