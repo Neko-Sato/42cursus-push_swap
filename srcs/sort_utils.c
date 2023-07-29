@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 18:15:46 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 03:33:54 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/30 03:36:47 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_stack	*stack_find(t_stack *stack, int target, t_callable callable)
 	{
 		if (callable.fun(*temp->value, callable.args))
 			return (temp);
-		temp = temp->tail;
 	}
 	return (NULL);
 }
