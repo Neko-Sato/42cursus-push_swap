@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 11:30:06 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/29 16:19:38 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 #include "actions.h"
 #include <ft_printf.h>
 
+extern int rank;
+
 void	do_pa(t_stack stackset[2])
 {
 	push_stack(&stackset[0], pop_stack(&stackset[1]));
+	for (int i=0; i<rank; i++)
+		ft_printf("-");
 	ft_printf("pa\n");
 	print_stackset(stackset);
 }
@@ -24,6 +28,8 @@ void	do_pa(t_stack stackset[2])
 void	do_pb(t_stack stackset[2])
 {
 	push_stack(&stackset[1], pop_stack(&stackset[0]));
+	for (int i=0; i<rank; i++)
+		ft_printf("-");
 	ft_printf("pb\n");
 	print_stackset(stackset);
 }

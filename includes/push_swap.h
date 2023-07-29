@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:22:43 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 10:28:01 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:13:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		setdata(t_stack stackset[2], int array[], int n);
 //	sort_stack.c 
 int		stack_lt(int value, void *pivot);
 int		stack_gt(int value, void *pivot);
-// void	init_sort(t_stack stackset[2]);
+int		init_sort(t_stack stackset[2]);
 void	finl_sort(t_stack stackset[2]);
 
 //	sort_utils.c
@@ -32,7 +32,7 @@ int		is_sorted(t_stack *stack, int target, int descending);
 t_stack	*stack_find(t_stack *stack, int target, t_callable callable);
 
 //	sorts..
-void	mixed_sort(t_stack stackset[2], int target[2]);
+void	mixed_sort(t_stack stackset[2], int target[2], int partition);
 void	polar_sort(t_stack stackset[2], int target[2]);
 void	bisection_sort(t_stack stackset[2], int target[2]);
 

@@ -6,20 +6,24 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:29:44 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/28 11:42:43 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:42:41 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stack.h"
 #include "actions.h"
+#include <ft_printf.h>
 
-static void	divide(t_stack stackset[2], int flag, int target[2], int *record);
+static int	divide(t_stack stackset[2], int flag, int target[2], int *record);
 static void	expand(t_stack stackset[2], int flag, int target[2], int *record);
+
+extern int rank;
 
 void	bisection_sort(t_stack stackset[2], int target[2])
 {
 	int		*sub_target;
+	int		pivot;
 	int		flag;
 	int		record;
 
@@ -29,12 +33,20 @@ void	bisection_sort(t_stack stackset[2], int target[2])
 	sub_target = (int []){!!(flag & 0b10) * target[0],
 		!!(flag & 0b01) * target[1]};
 	record = 0;
-	divide(stackset, flag, sub_target, &record);
+	pivot = divide(stackset, flag, sub_target, &record);
 	expand(stackset, flag, sub_target, &record);
-	mixed_sort(stackset, sub_target);
+	/**/rank++; ft_printf("rank%d start mixed_sort: %d, %d\n", rank ,sub_target[0], sub_target[1]);
+	mixed_sort(stackset, sub_target, pivot);
+	/**/ft_printf("rank%d end mixed_sort: %d, %d\n", rank ,sub_target[0], sub_target[1]); rank--;
+	while (sub_target[flag - 1]--)
+	{
+		do_p_(stackset, flag);
+		sub_target[2 - flag]++;
+	}
+	target[2 - flag] = sub_target[2 - flag];
 }
 
-static void	divide(t_stack stackset[2], int flag, int target[2], int *record)
+static int	divide(t_stack stackset[2], int flag, int target[2], int *record)
 {
 	int		pivot;
 	t_stack	*next_push;
@@ -64,6 +76,7 @@ static void	divide(t_stack stackset[2], int flag, int target[2], int *record)
 		target[flag - 1] += temp;
 		*record += !temp;
 	}
+	return (pivot);
 }
 
 static void	expand(t_stack stackset[2], int flag, int target[2], int *record)
