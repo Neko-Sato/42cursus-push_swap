@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/07/30 06:41:31 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/08/01 03:13:48 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME			= push_swap
 BONUS_NAME		= checker
 
 DIR				= .
+GET_NEXT_LINE	= $(DIR)/get_next_line
+FT				= $(DIR)/libft
 FT_PRINTF		= $(DIR)/libftprintf
 INCS_DIR		= $(DIR)/includes
 OBJS_DIR		= $(DIR)/objs
@@ -36,12 +38,8 @@ SRCS			= \
 		mixed_sort.c \
 		polar_sort.c \
 		bisection_sort.c \
+		coordinate_compression.c \
 	) \
-	$(addprefix $(DIR)/utils/, \
-		ft_atoi.c \
-		ft_isdigit.c \
-		ft_strncmp.c \
-	)\
 	$(addprefix $(DIR)/get_next_line/, \
 		get_next_line.c \
 		get_next_line_utils.c \
@@ -51,15 +49,18 @@ OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS			= -Wall -Wextra -Werror
 CFLAGS			+= -g
-LDFLAGS			= -L$(FT_PRINTF)
-IDFLAGS			= -I$(FT_PRINTF)
-LIBS			= -lftprintf
+LDFLAGS			+= -L$(FT)
+IDFLAGS			+= -I$(FT)
+LIBS			+= -lft
+LDFLAGS			+= -L$(FT_PRINTF)
+IDFLAGS			+= -I$(FT_PRINTF)
+LIBS			+= -lftprintf
 IDFLAGS			+= -I$(INCS_DIR)
 IDFLAGS			+= -I./get_next_line
 
 .PHONY: all clean fclean re bonus
 
-all: $(FT_PRINTF) $(NAME)
+all: $(FT) $(FT_PRINTF) $(NAME)
 
 $(NAME): $(MAIN) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
@@ -88,6 +89,21 @@ test: test.c $(OBJS)
 norm: $(MAIN) $(SRCS) $(INCS_DIR)
 	@norminette $^
 
+get_next_line/*: $(GET_NEXT_LINE)
+
+.PHONY: $(GET_NEXT_LINE)
+$(GET_NEXT_LINE):
+	@git submodule init $@
+	@git submodule update $@
+
+.PHONY: $(FT)
+$(FT):
+	@git submodule init $@
+	@git submodule update $@
+	@make -C $@
+
 .PHONY: $(FT_PRINTF)
 $(FT_PRINTF):
+	@git submodule init $@
+	@git submodule update $@
 	@make -C $@
