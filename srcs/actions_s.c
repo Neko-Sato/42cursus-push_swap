@@ -5,67 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 06:42:42 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/08/01 07:16:09 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/02 07:57:13 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
-#include "stack.h"
-#include <ft_printf.h>
+#include "stackset.h"
+#include <libft.h>
 
-void	do_sa(t_stack stackset[2], int print)
+static void	action_s(t_stackset *s, int stack)
 {
-	void	*temp[2];
+	int	*n[2];
+	int	temp;
 
-	temp[0] = pop_stack(&stackset[0]);
-	temp[1] = pop_stack(&stackset[0]);
-	push_stack(&stackset[0], temp[0]);
-	push_stack(&stackset[0], temp[1]);
-	if (print)
-		ft_printf("sa\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+	if (1 < s->vars.len[stack])
+	{
+		n[0] = &s->stack[get_index(&s->vars, stack, 0)];
+		n[1] = &s->stack[get_index(&s->vars, stack, 1)];
+		temp = *n[0];
+		*n[0] = *n[1];
+		*n[1] = temp;
+	}
 }
 
-void	do_sb(t_stack stackset[2], int print)
+void	do_sa(t_stackset *s, int print)
 {
-	void	*temp[2];
-
-	temp[0] = pop_stack(&stackset[1]);
-	temp[1] = pop_stack(&stackset[1]);
-	push_stack(&stackset[1], temp[0]);
-	push_stack(&stackset[1], temp[1]);
+	action_s(s, 0);
 	if (print)
-		ft_printf("sb\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+		ft_putendl_fd("sa", 1);
 }
 
-void	do_ss(t_stack stackset[2], int print)
+void	do_sb(t_stackset *s, int print)
 {
-	void	*temp[4];
-
-	temp[0] = pop_stack(&stackset[0]);
-	temp[1] = pop_stack(&stackset[0]);
-	temp[2] = pop_stack(&stackset[1]);
-	temp[3] = pop_stack(&stackset[1]);
-	push_stack(&stackset[0], temp[0]);
-	push_stack(&stackset[0], temp[1]);
-	push_stack(&stackset[1], temp[2]);
-	push_stack(&stackset[1], temp[3]);
+	action_s(s, 1);
 	if (print)
-		ft_printf("ss\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+		ft_putendl_fd("sb", 1);
 }
 
-void	do_s_(t_stack stackset[2], int slect, int print)
+void	do_ss(t_stackset *s, int print)
 {
-	if (slect == 0b11)
-		do_ss(stackset, print);
-	else if (slect == 0b10)
-		do_sa(stackset, print);
-	else if (slect == 0b01)
-		do_sb(stackset, print);
+	action_s(s, 0);
+	action_s(s, 1);
+	if (print)
+		ft_putendl_fd("ss", 1);
 }

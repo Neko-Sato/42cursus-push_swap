@@ -5,59 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 06:42:51 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/08/01 07:17:12 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/02 07:55:35 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
-#include "stack.h"
-#include <ft_printf.h>
+#include "stackset.h"
+#include <libft.h>
 
-void	do_ra(t_stack stackset[2], int print)
+static void	action_r(t_stackset *s, int stack)
 {
-	void	*temp;
+	int	temp;
 
-	temp = pop_stack(&stackset[0]);
-	push_stack(stackset[0].head, temp);
-	if (print)
-		ft_printf("ra\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+	if (1 < s->vars.len[stack])
+	{
+		temp = s->stack[get_index(&s->vars, stack, 0)];
+		s->vars.head[stack] = get_index_stack(&s->vars, stack, 1);
+		s->stack[get_index(&s->vars, stack, -1)] = temp;
+	}
 }
 
-void	do_rb(t_stack stackset[2], int print)
+void	do_ra(t_stackset *s, int print)
 {
-	void	*temp;
-
-	temp = pop_stack(&stackset[1]);
-	push_stack(stackset[1].head, temp);
+	action_r(s, 0);
 	if (print)
-		ft_printf("rb\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+		ft_putendl_fd("ra", 1);
 }
 
-void	do_rr(t_stack stackset[2], int print)
+void	do_rb(t_stackset *s, int print)
 {
-	void	*temp[2];
-
-	temp[0] = pop_stack(&stackset[0]);
-	push_stack(stackset[0].head, temp[0]);
-	temp[1] = pop_stack(&stackset[1]);
-	push_stack(stackset[1].head, temp[1]);
+	action_r(s, 1);
 	if (print)
-		ft_printf("rr\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
+		ft_putendl_fd("rb", 1);
 }
 
-void	do_r_(t_stack stackset[2], int slect, int print)
+void	do_rr(t_stackset *s, int print)
 {
-	if (slect == 0b11)
-		do_rr(stackset, print);
-	else if (slect == 0b10)
-		do_ra(stackset, print);
-	else if (slect == 0b01)
-		do_rb(stackset, print);
+	action_r(s, 0);
+	action_r(s, 1);
+	if (print)
+		ft_putendl_fd("rr", 1);
 }

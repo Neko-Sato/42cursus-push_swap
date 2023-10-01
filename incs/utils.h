@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 14:43:57 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/06/30 14:58:15 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/08/02 19:45:51 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/08/02 19:53:17 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_abs(int n)
-{
-	if (n & 1u << 32)
-		return ((unsigned int)n);
-	return (~(unsigned int)n + 1u);
-}
+#ifndef UTILS_H
+# define UTILS_H
+
+# include <stddef.h>
+
+void	compress_array(int arry[], size_t len);
+
+#endif

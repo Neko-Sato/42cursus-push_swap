@@ -1,69 +1,60 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stackset.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:25:28 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 01:43:31 by hshimizu         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "stackset.h"
+#include <libft.h>
+#include <stdlib.h>
 
-#include "stack.h"
-#include "stdlib.h"
-#include <ft_printf.h>
-
-void	print_stackset(t_stack stackset[2])
+t_stackset	*init_stackset(int array[], size_t len)
 {
-	int		i;
-	t_stack	*temp;
+	t_stackset	*s;
 
-	i = 0;
-	while (i < 2)
+	s = (t_stackset *)malloc(sizeof(t_stackset));
+	if (!s)
+		return (NULL);
+	s->stack = (int *)malloc(sizeof(int) * len * 2);
+	if (!s->stack)
 	{
-		ft_printf("%c: ", 'a' + i);
-		temp = stackset[i].tail;
-		while (&stackset[i] != temp)
-		{
-			ft_printf("%2d, ", *temp->value);
-			temp = temp->tail;
-		}
-		ft_printf("\n");
-		i++;
+		free(s);
+		return (NULL);
 	}
-	ft_printf("\n");
+	ft_memcpy(s->stack, array, sizeof(int) * len);
+	s->vars.size = len;
+	s->vars.head[0] = 0;
+	s->vars.len[0] = len;
+	s->vars.head[1] = 0;
+	s->vars.len[1] = 0;
+	return (s);
 }
 
-void	init_stackset(t_stack stackset[2])
+size_t	get_index_stack(t_stackset_vars *vars, int stack, int i)
 {
-	int	i;
-
-	i = 0;
-	while (i < 2)
-	{
-		stackset[i].value = NULL;
-		stackset[i].head = &stackset[i];
-		stackset[i].tail = &stackset[i];
-		i++;
-	}
+	while (i < 0)
+		i += vars->size;
+	return (vars->size * stack + (vars->head[stack] + i) % vars->size);
 }
 
-void	finl_stackset(t_stack stackset[2])
+size_t	get_index(t_stackset_vars *vars, int stack, int i)
 {
-	int		i;
-	void	*temp;
+	while (i < 0)
+		i += vars->len[stack];
+	return (get_index_stack(vars, stack, i % vars->len[stack]));
+}
 
+void	print_stack(t_stackset *s)
+{
+	size_t	i;
+
+	ft_putstr_fd("a: ", 1);
 	i = 0;
-	while (i < 2)
+	while (i < s->vars.len[0])
 	{
-		while (1)
-		{
-			temp = pop_stack(&stackset[i]);
-			if (!temp)
-				break ;
-			free(temp);
-		}
-		i++;
+		ft_putnbr_fd(s->stack[get_index(&s->vars, 0, i++)], 1);
+		ft_putstr_fd(", ", 1);
 	}
+	ft_putstr_fd("\nb: ", 1);
+	i = 0;
+	while (i < s->vars.len[1])
+	{
+		ft_putnbr_fd(s->stack[get_index(&s->vars, 1, i++)], 1);
+		ft_putstr_fd(", ", 1);
+	}
+	ft_putstr_fd("\n\n", 1);
 }

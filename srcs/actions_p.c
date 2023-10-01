@@ -5,58 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:23:36 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/07/30 06:42:33 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/08/01 07:15:24 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/02 07:52:49 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
-#include "stack.h"
-#include <ft_printf.h>
+#include "stackset.h"
+#include <libft.h>
 
-void	do_pa(t_stack stackset[2], int print)
-{
-	push_stack(&stackset[0], pop_stack(&stackset[1]));
-	if (print)
-		ft_printf("pa\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
-}
-
-void	do_pb(t_stack stackset[2], int print)
-{
-	push_stack(&stackset[1], pop_stack(&stackset[0]));
-	if (print)
-		ft_printf("pb\n");
-	if (STACK_PRINT)
-		print_stackset(stackset);
-}
-
-void	do_pp(t_stack stackset[2], int print)
+static void	action_p(t_stackset *s, int stack)
 {
 	int	temp;
 
-	temp = 0;
-	temp |= (stackset[0].tail != &stackset[0]) << 1;
-	temp |= (stackset[0].tail != &stackset[0]);
-	if (temp == 0b11)
+	if (s->vars.len[!stack])
 	{
-		do_pa(stackset, print);
-		do_sa(stackset, print);
-		do_pb(stackset, print);
+		temp = s->stack[get_index(&s->vars, !stack, 0)];
+		s->vars.head[!stack] = get_index_stack(&s->vars, !stack, 1);
+		s->vars.len[!stack]--;
+		if (s->vars.len[stack])
+			s->vars.head[stack] = get_index_stack(&s->vars, stack, -1);
+		s->vars.len[stack]++;
+		s->stack[get_index(&s->vars, stack, 0)] = temp;
 	}
-	else if (temp == 0b10)
-		do_pb(stackset, print);
-	else if (temp == 0b01)
-		do_pa(stackset, print);
 }
 
-void	do_p_(t_stack stackset[2], int slect, int print)
+void	do_pa(t_stackset *s, int print)
 {
-	if (slect == 0b11)
-		do_pp(stackset, print);
-	else if (slect == 0b10)
-		do_pa(stackset, print);
-	else if (slect == 0b01)
-		do_pb(stackset, print);
+	action_p(s, 0);
+	if (print)
+		ft_putendl_fd("pa", 1);
+}
+
+void	do_pb(t_stackset *s, int print)
+{
+	action_p(s, 1);
+	if (print)
+		ft_putendl_fd("pb", 1);
 }

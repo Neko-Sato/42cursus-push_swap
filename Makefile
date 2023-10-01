@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/08/01 03:13:48 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/02 08:02:19 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,8 @@ NAME			= push_swap
 BONUS_NAME		= checker
 
 DIR				= .
-GET_NEXT_LINE	= $(DIR)/get_next_line
 FT				= $(DIR)/libft
-FT_PRINTF		= $(DIR)/libftprintf
-INCS_DIR		= $(DIR)/includes
+INCS_DIR		= $(DIR)/incs
 OBJS_DIR		= $(DIR)/objs
 
 MAIN			= $(DIR)/main.c
@@ -25,25 +23,14 @@ BONUS_MAIN		= $(DIR)/bonus_main.c
 
 SRCS			= \
 	$(addprefix $(DIR)/srcs/, \
-		push_swap.c \
-		checker.c \
-		stack.c \
 		stackset.c \
+		actions.c \
 		actions_p.c \
 		actions_s.c \
 		actions_r.c \
 		actions_rr.c \
-		sort_utils.c \
-		sort_stack.c \
-		mixed_sort.c \
-		polar_sort.c \
-		bisection_sort.c \
-		coordinate_compression.c \
-	) \
-	$(addprefix $(DIR)/get_next_line/, \
-		get_next_line.c \
-		get_next_line_utils.c \
-	)\
+		compress_array.c \
+	)
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
@@ -52,11 +39,7 @@ CFLAGS			+= -g
 LDFLAGS			+= -L$(FT)
 IDFLAGS			+= -I$(FT)
 LIBS			+= -lft
-LDFLAGS			+= -L$(FT_PRINTF)
-IDFLAGS			+= -I$(FT_PRINTF)
-LIBS			+= -lftprintf
 IDFLAGS			+= -I$(INCS_DIR)
-IDFLAGS			+= -I./get_next_line
 
 .PHONY: all clean fclean re bonus
 
@@ -76,34 +59,20 @@ clean:
 	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
-	@make -C $(FT_PRINTF) fclean
+	@make -C $(FT) fclean
 	$(RM) $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
 .PHONY: test
 test: test.c $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
 
 .PHONY: norm
 norm: $(MAIN) $(SRCS) $(INCS_DIR)
 	@norminette $^
 
-get_next_line/*: $(GET_NEXT_LINE)
-
-.PHONY: $(GET_NEXT_LINE)
-$(GET_NEXT_LINE):
-	@git submodule init $@
-	@git submodule update $@
-
 .PHONY: $(FT)
 $(FT):
-	@git submodule init $@
-	@git submodule update $@
-	@make -C $@
-
-.PHONY: $(FT_PRINTF)
-$(FT_PRINTF):
-	@git submodule init $@
-	@git submodule update $@
-	@make -C $@
+	@git submodule update --init $@
+	@make -C $@ all
