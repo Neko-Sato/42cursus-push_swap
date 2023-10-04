@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:16:09 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/02 07:57:13 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:56:19 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,18 @@ static void	action_s(t_stackset *s, int stack)
 	}
 }
 
-void	do_sa(t_stackset *s, int print)
+void	do_sa(t_stackset *s)
 {
 	action_s(s, 0);
-	if (print)
-		ft_putendl_fd("sa", 1);
 }
 
-void	do_sb(t_stackset *s, int print)
+void	do_sb(t_stackset *s)
 {
 	action_s(s, 1);
-	if (print)
-		ft_putendl_fd("sb", 1);
 }
 
-void	do_ss(t_stackset *s, int print)
+void	do_ss(t_stackset *s)
 {
 	action_s(s, 0);
 	action_s(s, 1);
-	if (print)
-		ft_putendl_fd("ss", 1);
 }

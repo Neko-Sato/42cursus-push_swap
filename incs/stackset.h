@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:32:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/08/02 21:38:43 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/02 08:57:18 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct s_stackset
 	t_stackset_vars	vars;
 }					t_stackset;
 
-t_stackset			*init_stackset(int array[], size_t len);
+t_stackset			*new_stackset(int array[], size_t len);
+void				del_stackset(t_stackset *s);
+int					stackat(t_stackset *s, int stack, int i);
 size_t				get_index_stack(t_stackset_vars *vars, int stack, int i);
 size_t				get_index(t_stackset_vars *vars, int stack, int i);
 void				print_stack(t_stackset *s);

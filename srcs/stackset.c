@@ -2,7 +2,7 @@
 #include <libft.h>
 #include <stdlib.h>
 
-t_stackset	*init_stackset(int array[], size_t len)
+t_stackset	*new_stackset(int array[], size_t len)
 {
 	t_stackset	*s;
 
@@ -22,6 +22,20 @@ t_stackset	*init_stackset(int array[], size_t len)
 	s->vars.head[1] = 0;
 	s->vars.len[1] = 0;
 	return (s);
+}
+
+void	del_stackset(t_stackset *s)
+{
+	if (s)
+	{
+		free(s->stack);
+		free(s);
+	}
+}
+
+int	stackat(t_stackset *s, int stack, int i)
+{
+	return (s->stack[get_index(&s->vars, stack, i)]);
 }
 
 size_t	get_index_stack(t_stackset_vars *vars, int stack, int i)
