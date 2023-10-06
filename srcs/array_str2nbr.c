@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   three_sort.c                                       :+:      :+:    :+:   */
+/*   atoi_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 12:44:22 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 03:13:57 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/10/07 02:24:15 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/07 02:55:07 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stackset.h"
-#include "actions.h"
-#include "sort.h"
+#include <libft.h>
+#include <stdlib.h>
 
-void	three_sort(t_stackset *s, size_t len)
+int	*array_str2nbr(char *str_array[], size_t len)
 {
-	if (2 < len)
+	int		*array;
+	size_t	i;
+
+	array = malloc(sizeof(int) * len);
+	i = 0;
+	while (i < len)
 	{
-		if (stackat(s, 0, 0) == 2)
-			do_action(s, ra, 1);
-		else if (stackat(s, 0, 1) == 2)
-			do_action(s, rra, 1);
-		if (is_sorted(s, len))
-			return ;
+		if (!ft_isnumber(str_array[i]))
+		{
+			free(array);
+			return (NULL);
+		}
+		array[i] = ft_atoi(str_array[i]);
+		i++;
 	}
-	do_action(s, sa, 1);
+	return (array);
 }

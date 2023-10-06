@@ -6,14 +6,13 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:08:10 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:36:51 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 03:36:50 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stackset.h"
 #include "actions.h"
 #include "sort.h"
-#include "utils.h"
 
 void	quick_sort_stacka(t_stackset *s, size_t len)
 {

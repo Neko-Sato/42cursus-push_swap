@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 05:21:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:52:46 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 04:22:42 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int				optimized_action(t_actions actions[4]);
 void			set_action_buff(t_actions action);
 void			put_action_buff(void);
 void			optimized_action_buff(void);
+
+int				actions_from_stdin(t_stackset *s);
 
 #endif

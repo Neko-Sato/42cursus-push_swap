@@ -6,14 +6,13 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 08:49:20 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:35:09 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 04:04:22 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stackset.h"
 #include "actions.h"
 #include "sort.h"
-#include "utils.h"
+#include "stackset.h"
 #include <libft.h>
 
 static size_t	send_less(t_stackset *s, size_t len, int head);
@@ -58,6 +57,7 @@ void	insert_sort_stackb_top(t_stackset *s, size_t len)
 		}
 	}
 }
+
 void	insert_sort_stackb_bottom(t_stackset *s, size_t len)
 {
 	size_t	n;
@@ -67,7 +67,6 @@ void	insert_sort_stackb_bottom(t_stackset *s, size_t len)
 		do_action(s, rrb, 1);
 	insert_sort_stackb_top(s, len);
 }
-
 
 static size_t	send_less(t_stackset *s, size_t len, int head)
 {

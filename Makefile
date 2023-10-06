@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/06 20:18:24 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/07 04:02:04 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,14 @@ SRCS			= \
 		actions_rr.c \
 		optimized_action.c \
 		actions_buff.c \
-		compress_array.c \
 		three_sort.c \
 		insert_sort.c \
 		quick_sort.c \
-		utils.c \
+		sort_utils.c \
+		compress_array.c \
+		array_str2nbr.c \
 		push_swap.c \
+		actions_from_stdin.c \
 	)
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
