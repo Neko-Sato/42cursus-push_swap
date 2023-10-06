@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 05:21:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/02 08:07:04 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:52:46 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 typedef enum e_actions
 {
+	error = -1,
+	noaction = 0,
 	_a = 0b01,
 	_b = 0b10,
 	p_ = 0b001 << 2,
@@ -36,24 +38,35 @@ typedef enum e_actions
 	rrr = rr_ | _a | _b,
 }				t_actions;
 
-typedef void	(*t_do_action)(t_stackset *s, int print);
+t_actions		str2action(char *str);
+char			*astion2str(t_actions action);
+void			do_action(t_stackset *s, t_actions action, int set_buff);
+void			do_actions(t_stackset *s, t_actions *actions, size_t len,
+					int set_buff);
 
-void			do_action(t_stackset *s, t_actions action, int print);
-void			do_actions(t_stackset *s, t_actions *actions, size_t len, int print);
+//	do_action
+typedef void	(*t_do_action)(t_stackset *s);
 
-void			do_pa(t_stackset *s, int print);
-void			do_pb(t_stackset *s, int print);
+void			do_pa(t_stackset *s);
+void			do_pb(t_stackset *s);
 
-void			do_sa(t_stackset *s, int print);
-void			do_sb(t_stackset *s, int print);
-void			do_ss(t_stackset *s, int print);
+void			do_sa(t_stackset *s);
+void			do_sb(t_stackset *s);
+void			do_ss(t_stackset *s);
 
-void			do_ra(t_stackset *s, int print);
-void			do_rb(t_stackset *s, int print);
-void			do_rr(t_stackset *s, int print);
+void			do_ra(t_stackset *s);
+void			do_rb(t_stackset *s);
+void			do_rr(t_stackset *s);
 
-void			do_rra(t_stackset *s, int print);
-void			do_rrb(t_stackset *s, int print);
-void			do_rrr(t_stackset *s, int print);
+void			do_rra(t_stackset *s);
+void			do_rrb(t_stackset *s);
+void			do_rrr(t_stackset *s);
+
+//	optimized
+int				optimized_action(t_actions actions[4]);
+
+void			set_action_buff(t_actions action);
+void			put_action_buff(void);
+void			optimized_action_buff(void);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:17:12 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/04 21:55:42 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:33:29 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stackset.h"
-#include <libft.h>
 
 static void	action_r(t_stackset *s, int stack)
 {

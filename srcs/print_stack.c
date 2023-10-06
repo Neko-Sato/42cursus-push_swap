@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_s.c                                        :+:      :+:    :+:   */
+/*   print_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 07:16:09 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:33:38 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/10/06 03:27:18 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/06 03:27:58 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stackset.h"
+#include <libft.h>
 
-static void	action_s(t_stackset *s, int stack)
+void	print_stack(t_stackset *s)
 {
-	int	*n[2];
-	int	temp;
+	size_t	i;
 
-	if (1 < s->vars.len[stack])
+	ft_putstr_fd("a: ", 1);
+	i = 0;
+	while (i < s->vars.len[0])
 	{
-		n[0] = &s->stack[get_index(&s->vars, stack, 0)];
-		n[1] = &s->stack[get_index(&s->vars, stack, 1)];
-		temp = *n[0];
-		*n[0] = *n[1];
-		*n[1] = temp;
+		ft_putnbr_fd(s->stack[get_index(&s->vars, 0, i++)], 1);
+		ft_putstr_fd(", ", 1);
 	}
-}
-
-void	do_sa(t_stackset *s)
-{
-	action_s(s, 0);
-}
-
-void	do_sb(t_stackset *s)
-{
-	action_s(s, 1);
-}
-
-void	do_ss(t_stackset *s)
-{
-	action_s(s, 0);
-	action_s(s, 1);
+	ft_putstr_fd("\nb: ", 1);
+	i = 0;
+	while (i < s->vars.len[1])
+	{
+		ft_putnbr_fd(s->stack[get_index(&s->vars, 1, i++)], 1);
+		ft_putstr_fd(", ", 1);
+	}
+	ft_putstr_fd("\n\n", 1);
 }

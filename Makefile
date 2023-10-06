@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/04 22:09:14 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/06 20:18:24 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ BONUS_MAIN		= $(DIR)/bonus_main.c
 SRCS			= \
 	$(addprefix $(DIR)/srcs/, \
 		stackset.c \
+		print_stack.c \
 		actions.c \
 		actions_p.c \
 		actions_s.c \
@@ -32,8 +33,11 @@ SRCS			= \
 		optimized_action.c \
 		actions_buff.c \
 		compress_array.c \
-		sort.c \
+		three_sort.c \
+		insert_sort.c \
+		quick_sort.c \
 		utils.c \
+		push_swap.c \
 	)
 
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))

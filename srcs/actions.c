@@ -6,15 +6,14 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:15:24 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/04 22:20:22 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:52:34 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include <libft.h>
-#include <unistd.h>
 
-t_actions	str2astion(char *str)
+t_actions	str2action(char *str)
 {
 	if (!ft_strcmp("pa", str))
 		return (pa);

@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions_s.c                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 07:16:09 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:33:38 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/10/06 05:42:35 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/10/06 20:18:00 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "actions.h"
+#include "sort.h"
 #include "stackset.h"
+#include "utils.h"
+#include <errno.h>
+#include <libft.h>
+#include <unistd.h>
 
-static void	action_s(t_stackset *s, int stack)
+int	push_swap(int *array, size_t len)
 {
-	int	*n[2];
-	int	temp;
+	t_stackset	*s;
 
-	if (1 < s->vars.len[stack])
+	s = new_stackset(array, len);
+	if (!s)
+		return (-1);
+	if (!is_sorted(s, len))
 	{
-		n[0] = &s->stack[get_index(&s->vars, stack, 0)];
-		n[1] = &s->stack[get_index(&s->vars, stack, 1)];
-		temp = *n[0];
-		*n[0] = *n[1];
-		*n[1] = temp;
+		if (len <= 3)
+			three_sort(s, len);
+		else
+			quick_sort_stacka(s, len);
+		optimized_action_buff();
+		put_action_buff();
 	}
-}
-
-void	do_sa(t_stackset *s)
-{
-	action_s(s, 0);
-}
-
-void	do_sb(t_stackset *s)
-{
-	action_s(s, 1);
-}
-
-void	do_ss(t_stackset *s)
-{
-	action_s(s, 0);
-	action_s(s, 1);
+	del_stackset(s);
+	return (0);
 }
