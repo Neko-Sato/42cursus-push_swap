@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:15:24 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 19:52:34 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 09:07:29 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,20 @@ char	*astion2str(t_actions action)
 		"rrr"}[action]);
 }
 
-void	do_action(t_stackset *s, t_actions action, int set_buff)
+void	do_action(t_stackset *s, t_actions action, void *buff)
 {
 	(t_do_action []){NULL, NULL, NULL, NULL, NULL, do_pa, do_pb, NULL, NULL,
 		do_sa, do_sb, do_ss, NULL, do_ra, do_rb, do_rr, NULL, do_rra, do_rrb,
 		do_rrr}[action](s);
-	if (set_buff)
-		set_action_buff(action);
+	if (buff)
+		set_action_buff(action, buff);
 }
 
-void	do_actions(t_stackset *s, t_actions *actions, size_t len, int set_buff)
+void	do_actions(t_stackset *s, t_actions *actions, size_t len, void *buff)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < len)
-		do_action(s, actions[i++], set_buff);
+		do_action(s, actions[i++], buff);
 }

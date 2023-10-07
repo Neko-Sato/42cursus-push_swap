@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 05:21:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 04:22:42 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 09:08:08 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef enum e_actions
 
 t_actions		str2action(char *str);
 char			*astion2str(t_actions action);
-void			do_action(t_stackset *s, t_actions action, int set_buff);
+void			do_action(t_stackset *s, t_actions action, void *buff);
 void			do_actions(t_stackset *s, t_actions *actions, size_t len,
-					int set_buff);
+					void *buff);
 
 //	do_action
 typedef void	(*t_do_action)(t_stackset *s);
@@ -65,9 +65,9 @@ void			do_rrr(t_stackset *s);
 //	optimized
 int				optimized_action(t_actions actions[4]);
 
-void			set_action_buff(t_actions action);
-void			put_action_buff(void);
-void			optimized_action_buff(void);
+void			set_action_buff(t_actions action, void *buff);
+void			put_action_buff(void *buff);
+void			optimized_action_buff(void *buff);
 
 int				actions_from_stdin(t_stackset *s);
 

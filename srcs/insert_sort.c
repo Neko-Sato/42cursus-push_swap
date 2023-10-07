@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 08:49:20 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 04:04:22 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 09:15:33 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include "stackset.h"
 #include <libft.h>
 
-static size_t	send_less(t_stackset *s, size_t len, int head);
+static size_t	send_less(t_stackset *s, size_t len, int head, void *buff);
 static int		get_smallest(t_stackset *s, size_t len);
 
-void	insert_sort_stacka(t_stackset *s, size_t len)
+void	insert_sort_stacka(t_stackset *s, size_t len, void *buff)
 {
 	int		head;
 	size_t	count;
@@ -26,13 +26,13 @@ void	insert_sort_stacka(t_stackset *s, size_t len)
 	if (len < 1)
 		return ;
 	head = stackat(s, 0, 0);
-	count = send_less(s, len, head);
-	insert_sort_stackb_top(s, count);
-	do_action(s, ra, 1);
-	return (insert_sort_stacka(s, len - (count + 1)));
+	count = send_less(s, len, head, buff);
+	insert_sort_stackb_top(s, count, buff);
+	do_action(s, ra, buff);
+	return (insert_sort_stacka(s, len - (count + 1), buff));
 }
 
-void	insert_sort_stackb_top(t_stackset *s, size_t len)
+void	insert_sort_stackb_top(t_stackset *s, size_t len, void *buff)
 {
 	int		smallest;
 	size_t	n;
@@ -47,28 +47,28 @@ void	insert_sort_stackb_top(t_stackset *s, size_t len)
 			count = 0;
 			while (stackat(s, 1, 0) != smallest)
 			{
-				do_action(s, rb, 1);
+				do_action(s, rb, buff);
 				count++;
 			}
-			do_actions(s, (t_actions[]){pa, ra}, 2, 1);
+			do_actions(s, (t_actions[]){pa, ra}, 2, buff);
 			while (count--)
-				do_action(s, rrb, 1);
+				do_action(s, rrb, buff);
 			smallest++;
 		}
 	}
 }
 
-void	insert_sort_stackb_bottom(t_stackset *s, size_t len)
+void	insert_sort_stackb_bottom(t_stackset *s, size_t len, void *buff)
 {
 	size_t	n;
 
 	n = len;
 	while (n--)
-		do_action(s, rrb, 1);
-	insert_sort_stackb_top(s, len);
+		do_action(s, rrb, buff);
+	insert_sort_stackb_top(s, len, buff);
 }
 
-static size_t	send_less(t_stackset *s, size_t len, int head)
+static size_t	send_less(t_stackset *s, size_t len, int head, void *buff)
 {
 	int		next;
 	size_t	count;
@@ -83,16 +83,16 @@ static size_t	send_less(t_stackset *s, size_t len, int head)
 			break ;
 		while (stackat(s, 0, 0) != next)
 		{
-			do_action(s, ra, 1);
+			do_action(s, ra, buff);
 			n++;
 		}
-		do_action(s, pb, 1);
+		do_action(s, pb, buff);
 		count++;
 		if (1 < count && stackat(s, 1, 0) > stackat(s, 1, 1))
-			do_action(s, sb, 1);
+			do_action(s, sb, buff);
 	}
 	while (n--)
-		do_action(s, rra, 1);
+		do_action(s, rra, buff);
 	return (count);
 }
 

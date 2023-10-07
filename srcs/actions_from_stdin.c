@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 03:38:29 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 04:09:14 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 09:08:56 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	loop(t_bufferio *f, t_stackset *s, int *has_error)
 		free(cmd);
 		return (1);
 	}
-	do_action(s, action, 0);
+	do_action(s, action, NULL);
 	free(cmd);
 	return (0);
 }
