@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:35:39 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/06 03:19:42 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:50:31 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	to_s_action(t_actions *peri, t_actions *post, t_actions *post2,
 	else if ((*peri == pa && *post == rb && *post2 == pb && *post3 == rrb)
 		|| (*peri == rb && *post == pa && *post2 == rrb && *post3 == pb))
 	{
-		*peri = sa;
+		*peri = sb;
 		*post = noaction;
 		*post2 = noaction;
 		*post3 = noaction;

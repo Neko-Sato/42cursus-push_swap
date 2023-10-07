@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:55:13 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 09:22:40 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:57:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	optimized_action_buff(void *buff)
 			if (!actions[1])
 				ft_xlstpop(buff, sizeof(t_actions), i + 1, NULL);
 			if (!actions[0])
-				ft_xlstpop(buff, sizeof(t_actions), i--, NULL);
+				ft_xlstpop(buff, sizeof(t_actions), i, NULL);
 			else
 				ft_xlstset(*(void **)buff, sizeof(t_actions), i, &actions[0]);
+			i = (4 < i) * (i - 4);
 		}
 		else
 			i++;
