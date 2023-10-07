@@ -1,6 +1,3 @@
-[submodule "push-swap-pain"]
-	path = push-swap-pain
-	url = https://github.com/Bluegales/push-swap-pain
 [submodule "libft"]
 	path = libft
 	url = https://github.com/Neko-Sato/42cursus-libft
