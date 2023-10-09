@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/09 19:46:45 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/09 19:52:55 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS			= \
 OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS			= -Wall -Wextra -Werror
-CFLAGS			+= -g
+# CFLAGS			+= -g
 LDFLAGS			+= -L$(FT)
 IDFLAGS			+= -I$(FT)
 LIBS			+= -lft
