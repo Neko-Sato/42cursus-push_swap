@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 05:42:35 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 09:19:35 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:28:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	checker(int *array, size_t len)
 		del_stackset(s);
 		return (-1);
 	}
-	if (is_sorted(s, len))
+	if (!s->vars.len[1] && is_sorted(s, len))
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
