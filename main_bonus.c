@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/09 20:08:17 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:15:17 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	checker_main(char *src[], size_t n);
 
 int	main(int argc, char *argv[])
 {
+	if (argc == 1)
+		return ;
 	if (checker_main(&argv[1], argc - 1))
 		ft_putendl_fd("Error", STDERR_FILENO);
 }
