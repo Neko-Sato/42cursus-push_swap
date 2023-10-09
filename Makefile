@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/07 04:02:04 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/09 19:46:45 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ IDFLAGS			+= -I$(INCS_DIR)
 
 .PHONY: all clean fclean re bonus
 
-all: $(FT) $(FT_PRINTF) $(NAME)
+all: $(FT) $(NAME)
 
 $(NAME): $(MAIN) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
@@ -79,7 +79,7 @@ test: test.c $(OBJS)
 	$(CC) $(LDFLAGS) $(IDFLAGS) $^ -o $@ $(LIBS)
 
 .PHONY: norm
-norm: $(MAIN) $(SRCS) $(INCS_DIR)
+norm: $(MAIN) $(BONUS_MAIN) $(SRCS) $(INCS_DIR)
 	@norminette $^
 
 .PHONY: $(FT)

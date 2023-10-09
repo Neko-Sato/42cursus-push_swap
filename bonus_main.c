@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/07 04:21:31 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:51:46 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char *argv[])
 
 static int	checker_main(char *src[], size_t n)
 {
-	int ret;
-	int *args;
+	int	ret;
+	int	*args;
 
 	args = array_str2nbr(src, n);
 	if (!args)
