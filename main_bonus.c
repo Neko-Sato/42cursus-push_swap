@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_main.c                                       :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/10/09 19:51:46 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:08:17 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	checker_main(char *src[], size_t n)
 
 	args = array_str2nbr(src, n);
 	if (!args)
+		return (-1);
+	if (compress_array(args, n))
 		return (-1);
 	ret = checker(args, n);
 	free(args);

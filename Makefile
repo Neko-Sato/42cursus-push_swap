@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/09 19:52:55 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/09 20:07:59 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCS_DIR		= $(DIR)/incs
 OBJS_DIR		= $(DIR)/objs
 
 MAIN			= $(DIR)/main.c
-BONUS_MAIN		= $(DIR)/bonus_main.c
+BONUS_MAIN		= $(DIR)/main_bonus.c
 
 SRCS			= \
 	$(addprefix $(DIR)/srcs/, \
