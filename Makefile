@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/12 14:16:56 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/12 14:23:23 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ clean:
 	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
-	@make -C $(FT) fclean || true
+	@make -C $(FT) fclean
 	$(RM) $(NAME) $(BONUS_NAME)
 
 re: fclean all
