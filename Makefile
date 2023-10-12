@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/12 13:41:17 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/12 14:09:39 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ clean:
 	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
-	@make -C $(FT) fclean
+	@make -C $(FT) fclean || true
 	$(RM) $(NAME) $(BONUS_NAME)
 
 re: fclean all
@@ -85,5 +85,5 @@ norm: $(MAIN) $(BONUS_MAIN) $(SRCS) $(INCS_DIR)
 
 .PHONY: $(FT)
 $(FT):
-	@git submodule update --init $@
+	git submodule update --init $@
 	@make -C $@
