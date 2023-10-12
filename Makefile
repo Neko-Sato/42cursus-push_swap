@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 21:24:52 by hshimizu          #+#    #+#              #
-#    Updated: 2023/10/09 22:28:23 by hshimizu         ###   ########.fr        #
+#    Updated: 2023/10/12 13:41:17 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ OBJS			= $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CFLAGS			= -Wall -Wextra -Werror
 # CFLAGS			+= -g
+CFLAGS			+= -O2
 LDFLAGS			+= -L$(FT)
 IDFLAGS			+= -I$(FT)
 LIBS			+= -lft
@@ -85,4 +86,4 @@ norm: $(MAIN) $(BONUS_MAIN) $(SRCS) $(INCS_DIR)
 .PHONY: $(FT)
 $(FT):
 	@git submodule update --init $@
-	@make -C $@ all
+	@make -C $@
