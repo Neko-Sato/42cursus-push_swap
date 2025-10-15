@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action_rr.c                                        :+:      :+:    :+:   */
+/*   stacks_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 07:17:12 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 04:10:53 by hshimizu         ###   ########.fr       */
+/*   Created: 2025/10/14 21:11:18 by hshimizu          #+#    #+#             */
+/*   Updated: 2025/10/16 04:08:08 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stacks.h"
 
-static void	_action_rr(t_stacks *s, t_stackname name)
+int	stacks_check(const t_stacks *s)
 {
-	int	tmp;
+	size_t	i;
+	int		pre;
 
-	if (1 < s->_len[name])
+	if (stacks_len(s, STACK_B))
+		return (0);
+	if (stacks_len(s, STACK_A))
 	{
-		tmp = s->_data[_stacks_index(s, name, -1)];
-		s->_head[name] = _stacks_buffer_index(s, name, -1);
-		s->_data[_stacks_index(s, name, 0)] = tmp;
+		i = 0;
+		pre = stacks_at(s, STACK_A, i++);
+		while (i < stacks_len(s, STACK_A))
+			if (pre > stacks_at(s, STACK_A, i++))
+				return (0);
 	}
-}
-
-void	stacks_rra(t_stacks *s)
-{
-	_action_rr(s, STACK_A);
-}
-
-void	stacks_rrb(t_stacks *s)
-{
-	_action_rr(s, STACK_B);
-}
-
-void	stacks_rrr(t_stacks *s)
-{
-	_action_rr(s, STACK_A);
-	_action_rr(s, STACK_B);
+	return (1);
 }

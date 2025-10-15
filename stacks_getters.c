@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stacks_getters.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 03:44:19 by hshimizu         ###   ########.fr       */
+/*   Created: 2025/10/16 04:05:59 by hshimizu          #+#    #+#             */
+/*   Updated: 2025/10/16 04:13:34 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "stacks.h"
 
-int	push_swap(int *arr, size_t size)
+size_t	stacks_len(const t_stacks *stacks, t_stackname name)
 {
-	t_stacks	stacks;
+	return (stacks->_len[name]);
+}
 
-	if (stacks_init(&stacks, arr, size))
-		return (1);
-	//
-	stacks_destroy(&stacks);
-	return (0);
+int	stacks_at(const t_stacks *stacks, t_stackname name, long p)
+{
+	return (stacks->_data[_stacks_index(stacks, name, p)]);
 }

@@ -6,12 +6,13 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/15 20:48:32 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 04:13:19 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <ft_printf.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 int	main(int argc, char *argv[])

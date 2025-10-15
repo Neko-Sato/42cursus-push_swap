@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:05:06 by hshimizu          #+#    #+#              #
-#    Updated: 2025/10/16 03:36:21 by hshimizu         ###   ########.fr        #
+#    Updated: 2025/10/16 04:12:44 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS				:= \
 	atoi_array.c \
 	compress_coords.c \
 	stacks.c \
-	stacks_print.c \
+	stacks_getters.c \
 	action_p.c \
 	action_s.c \
 	action_r.c \
@@ -33,7 +33,8 @@ SRCS_BONUS			:= \
 	main_bonus.c \
 	atoi_array.c \
 	stacks.c \
-	stacks_print.c \
+	stacks_getters.c \
+	stacks_check.c \
 	action_p.c \
 	action_s.c \
 	action_r.c \
