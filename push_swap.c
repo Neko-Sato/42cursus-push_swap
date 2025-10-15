@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 03:44:19 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 04:17:38 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	push_swap(int *arr, size_t size)
 
 	if (stacks_init(&stacks, arr, size))
 		return (1);
-	//
 	stacks_destroy(&stacks);
 	return (0);
 }

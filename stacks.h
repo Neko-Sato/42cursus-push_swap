@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:23:49 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 04:12:05 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 04:17:29 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void		stacks_rr(t_stacks *s);
 void		stacks_rra(t_stacks *s);
 void		stacks_rrb(t_stacks *s);
 void		stacks_rrr(t_stacks *s);
-
 
 void		stacks_print(const t_stacks *stacks, int fd);
 int			stacks_check(const t_stacks *stacks);
