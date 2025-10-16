@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:05:06 by hshimizu          #+#    #+#              #
-#    Updated: 2025/10/16 04:12:44 by hshimizu         ###   ########.fr        #
+#    Updated: 2025/10/16 17:17:16 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,29 +17,23 @@ NAME_DEV 			:= $(NAME)_dev
 NAME_BONUS			:= checker
 NAME_BONUS_DEV		:= $(NAME_BONUS)_dev
 
-SRCS				:= \
-	main.c \
+COMMON				:= \
+	push_swap.c \
 	atoi_array.c \
 	compress_coords.c \
 	stacks.c \
-	stacks_getters.c \
-	action_p.c \
-	action_s.c \
-	action_r.c \
-	action_rr.c \
-	push_swap.c
-
-SRCS_BONUS			:= \
-	main_bonus.c \
-	atoi_array.c \
-	stacks.c \
-	stacks_getters.c \
 	stacks_check.c \
+	stacks_cmd.c \
+	stacks_getters.c \
+	stacks_istream.c \
+	stacks_print.c \
 	action_p.c \
-	action_s.c \
 	action_r.c \
 	action_rr.c \
-	checker.c
+	action_s.c
+
+SRCS				:= main.c $(COMMON)
+SRCS_BONUS			:= main_bonus.c $(COMMON)
 
 OUTDIR				:= .out
 OBJS				:= $(addprefix $(OUTDIR)/, $(SRCS:.c=.o))

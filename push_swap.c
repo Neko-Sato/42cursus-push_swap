@@ -6,19 +6,52 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 04:17:38 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:20:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stacks.h"
+#include <libft.h>
+#include <ft_printf.h>
+#include <unistd.h>
 
 int	push_swap(int *arr, size_t size)
 {
+	int			tmp;
 	t_stacks	stacks;
 
 	if (stacks_init(&stacks, arr, size))
 		return (1);
+	if (size <= 6)
+		tmp = small_sort(&stacks);
+	else if (size <= 100)
+		tmp = middle_sort(&stacks);
+	else
+		tmp = large_sort(&stacks);
 	stacks_destroy(&stacks);
-	return (0);
+	return (tmp);
+}
+
+int	checker(int *arr, size_t size)
+{
+	int			tmp;
+	t_stacks	stacks;
+	int			fd;
+	t_istream	is;
+
+	if (stacks_init(&stacks, arr, size))
+		return (1);
+	fd = STDIN_FILENO;
+	if (ft_istream_init(&is, ft__read_fd, &fd))
+	{
+		stacks_destroy(&stacks);
+		return (1);
+	}
+	tmp = stacks_istream(&stacks, &is);
+	if (!tmp)
+		ft_printf("%s\n", (const char *[]){"KO", "OK"}[stacks_check(&stacks)]);
+	ft_istream_destroy(&is);
+	stacks_destroy(&stacks);
+	return (tmp);
 }

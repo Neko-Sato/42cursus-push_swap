@@ -6,13 +6,14 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:23:49 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 04:17:29 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:05:48 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACKS_H
 # define STACKS_H
 
+# include <libft.h>
 # include <stddef.h>
 
 typedef enum e_stackname
@@ -50,7 +51,15 @@ void		stacks_rra(t_stacks *s);
 void		stacks_rrb(t_stacks *s);
 void		stacks_rrr(t_stacks *s);
 
+typedef struct s_action_entry
+{
+	const char	*cmd;
+	void		(*fun)(t_stacks *stacks);
+}				t_action_entry;
+
 void		stacks_print(const t_stacks *stacks, int fd);
 int			stacks_check(const t_stacks *stacks);
+int			stacks_cmd(t_stacks *stacks, const char *cmd);
+int			stacks_istream(t_stacks *stacks, t_istream *is);
 
 #endif
