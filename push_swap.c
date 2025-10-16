@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 17:20:01 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/16 18:14:12 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ int	checker(int *arr, size_t size)
 {
 	int			tmp;
 	t_stacks	stacks;
+	char		buf[1024];
 	int			fd;
 	t_istream	is;
 
 	if (stacks_init(&stacks, arr, size))
 		return (1);
 	fd = STDIN_FILENO;
-	if (ft_istream_init(&is, ft__read_fd, &fd))
+	if (ft_istream_init(&is, &(t_istream_init){
+			buf, sizeof(buf), ft__read_fd, &fd}))
 	{
 		stacks_destroy(&stacks);
 		return (1);

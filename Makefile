@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:05:06 by hshimizu          #+#    #+#              #
-#    Updated: 2025/10/16 17:17:16 by hshimizu         ###   ########.fr        #
+#    Updated: 2025/10/16 18:12:50 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,11 +96,11 @@ $(OUTDIR)/%.o: %.c
 
 $(NAME_DEV): CFLAGS += $(CFLAGS_DEV)
 $(NAME_DEV): $(OBJS_DEV) | libft libftprintf
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS_DEV)
 
 $(NAME_BONUS_DEV): CFLAGS += $(CFLAGS_DEV)
 $(NAME_BONUS_DEV): $(OBJS_BONUS_DEV) | libft libftprintf
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS_DEV)
 
 $(OUTDIR)/%_dev.o: %.c
 	@mkdir -p $(@D)
