@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 01:55:14 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 04:34:19 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,11 @@ static void	_optimize(t_action_buffer *buffer)
 				g_optimize_entries_size, sizeof(t_optimize_entry), _comper});
 		if (find)
 		{
+			tmp = find->action != ACT_NONE;
 			buffer->buf[0] = find->action;
-			ft_memcpy(&buffer->buf[1], &buffer->buf[n],
+			ft_memcpy(&buffer->buf[tmp], &buffer->buf[n],
 				sizeof(t_action) * (buffer->size - n));
-			buffer->size -= n - 1;
+			buffer->size -= n - tmp;
 			tmp = 0;
 			n = 0;
 			continue ;

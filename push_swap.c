@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 03:51:33 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 04:39:21 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ int	push_swap(int *arr, size_t size)
 	if (stacks_init(&stacks, arr, size))
 		return (1);
 	ft_memset(&buffer, 0, sizeof(t_action_buffer));
-	stacks_print(&stacks, 2);
-	if (stacks_check(&stacks))
-		tmp = 0;
-	else if (size <= 6)
-		tmp = small_sort(&stacks, &buffer);
-	else if (size <= 100)
-		tmp = middle_sort(&stacks, &buffer);
-	else
-		tmp = large_sort(&stacks, &buffer);
+	tmp = 0;
+	if (!stacks_check(&stacks))
+	{
+		if (size <= 6)
+			tmp = small_sort(&stacks, &buffer);
+		else if (size <= 100)
+			tmp = middle_sort(&stacks, &buffer);
+		else
+			tmp = large_sort(&stacks, &buffer);
+	}
 	action_buffer_flush(&buffer);
 	stacks_destroy(&stacks);
 	return (tmp);

@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:54:56 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 03:51:15 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 04:36:20 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int	small_sort(t_stacks *s, t_action_buffer *buf)
 	_sort(s, buf);
 	while (stacks_len(s, STACK_B))
 		(void)(stacks_pa(s), action_buffer_put(buf, ACT_PA));
-	stacks_print(s, 2);
 	return (0);
 }
