@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:15:24 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 04:13:59 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/18 13:00:48 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	_action_p(t_stacks *s, t_stackname name)
 
 	if (s->_len[!name])
 	{
-		tmp = s->_data[_stacks_index(s, !name, 0)];
+		tmp = s->_data[_stacks_buffer_index(s, !name, 0)];
 		s->_head[!name] = _stacks_buffer_index(s, !name, 1);
 		s->_len[!name]--;
 		if (s->_len[name])
 			s->_head[name] = _stacks_buffer_index(s, name, -1);
 		s->_len[name]++;
-		s->_data[_stacks_index(s, name, 0)] = tmp;
+		s->_data[_stacks_buffer_index(s, name, 0)] = tmp;
 	}
 }
 

@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   middle_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 03:25:10 by hshimizu         ###   ########.fr       */
+/*   Created: 2025/10/17 15:08:11 by hshimizu          #+#    #+#             */
+/*   Updated: 2025/10/18 18:19:37 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <ft_printf.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "stacks.h"
+#include "optimization.h"
+#include <assert.h>
 
-int	main(int argc, char *argv[])
+int	middle_sort(t_stacks *s, t_action_buffer *buf)
 {
-	int		tmp;
-	size_t	size;
-	int		*arr;
-
-	size = argc - 1;
-	arr = malloc(sizeof(int) * size);
-	tmp = !arr
-		|| atoi_array(arr, &argv[1], size)
-		|| normalization(arr, size)
-		|| push_swap(arr, size);
-	if (tmp)
-		ft_dprintf(STDERR_FILENO, "Error\n");
-	free(arr);
-	return (tmp);
+	(void)s;
+	(void)buf;
+	assert(0);
+	return (0);
 }

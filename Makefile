@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:05:06 by hshimizu          #+#    #+#              #
-#    Updated: 2025/10/16 18:12:50 by hshimizu         ###   ########.fr        #
+#    Updated: 2025/10/19 03:26:46 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME_BONUS_DEV		:= $(NAME_BONUS)_dev
 COMMON				:= \
 	push_swap.c \
 	atoi_array.c \
-	compress_coords.c \
+	normalization.c \
 	stacks.c \
 	stacks_check.c \
 	stacks_cmd.c \
@@ -30,7 +30,11 @@ COMMON				:= \
 	action_p.c \
 	action_r.c \
 	action_rr.c \
-	action_s.c
+	action_s.c \
+	large_sort.c \
+	middle_sort.c \
+	small_sort.c \
+	optimization.c
 
 SRCS				:= main.c $(COMMON)
 SRCS_BONUS			:= main_bonus.c $(COMMON)

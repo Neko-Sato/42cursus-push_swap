@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compress_coords.c                                  :+:      :+:    :+:   */
+/*   normalization.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 20:40:16 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 02:43:57 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 03:45:34 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <libft.h>
+#include <stdlib.h>
 
-int	compress_coords(int *arr, size_t size)
+static inline int	_internal(int *copy, int *arr, size_t size)
 {
-	int		*copy;
 	size_t	i;
-	size_t	j;
+
+	ft_qsort(&(t_qsort){copy, size, sizeof(int), (int (*)(const void *,
+				const void *))ft_intcmp});
+	i = 1;
+	while (i < size)
+	{
+		if (copy[i - 1] == copy[i])
+			return (1);
+		i++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = (int *)ft_bsearch(&(t_bsearch){&arr[i], copy, size,
+				sizeof(int), (int (*)(const void *, const void *))ft_intcmp})
+			- copy;
+		i++;
+	}
+	return (0);
+}
+
+int	normalization(int *arr, size_t size)
+{
+	int	tmp;
+	int	*copy;
 
 	copy = ft_memdup(arr, sizeof(int) * size);
 	if (!copy)
 		return (1);
-	ft_qsort(&(t_qsort){copy, size, sizeof(int), (int (*)(const void *,
-				const void *))ft_intcmp});
-	i = 0;
-	j = 0;
-	while (i < size)
-		if (copy[j] != copy[i++])
-			copy[++j] = copy[i - 1];
-	i = (j++, 0);
-	while (i < size)
-	{
-		arr[i] = (int *)ft_bsearch(&(t_bsearch){&arr[i], copy, j, sizeof(int),
-				(int (*)(const void *, const void *))ft_intcmp}) - copy;
-		i++;
-	}
-	return (free(copy), 0);
+	tmp = _internal(copy, arr, size);
+	free(copy);
+	return (tmp);
 }

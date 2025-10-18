@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   optimization.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 13:33:54 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 03:25:10 by hshimizu         ###   ########.fr       */
+/*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
+/*   Updated: 2025/10/19 01:42:39 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <ft_printf.h>
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef OPTIMIZATION_H
+# define OPTIMIZATION_H
 
-int	main(int argc, char *argv[])
+# include "stacks.h"
+
+typedef struct s_action_buffer
 {
-	int		tmp;
-	size_t	size;
-	int		*arr;
+	t_action		buf[8];
+	unsigned int	size;
+}					t_action_buffer;
 
-	size = argc - 1;
-	arr = malloc(sizeof(int) * size);
-	tmp = !arr
-		|| atoi_array(arr, &argv[1], size)
-		|| normalization(arr, size)
-		|| push_swap(arr, size);
-	if (tmp)
-		ft_dprintf(STDERR_FILENO, "Error\n");
-	free(arr);
-	return (tmp);
-}
+typedef struct s_optimize_entry
+{
+	int				code;
+	t_action		action;
+}					t_optimize_entry;
+
+void				action_buffer_put(t_action_buffer *buffer, t_action action);
+void				action_buffer_flush(t_action_buffer *buffer);
+
+#endif

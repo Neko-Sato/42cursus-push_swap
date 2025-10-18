@@ -6,29 +6,36 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/16 18:14:12 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 03:51:33 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "stacks.h"
+#include "optimization.h"
 #include <libft.h>
 #include <ft_printf.h>
 #include <unistd.h>
 
 int	push_swap(int *arr, size_t size)
 {
-	int			tmp;
-	t_stacks	stacks;
+	int				tmp;
+	t_stacks		stacks;
+	t_action_buffer	buffer;
 
 	if (stacks_init(&stacks, arr, size))
 		return (1);
-	if (size <= 6)
-		tmp = small_sort(&stacks);
+	ft_memset(&buffer, 0, sizeof(t_action_buffer));
+	stacks_print(&stacks, 2);
+	if (stacks_check(&stacks))
+		tmp = 0;
+	else if (size <= 6)
+		tmp = small_sort(&stacks, &buffer);
 	else if (size <= 100)
-		tmp = middle_sort(&stacks);
+		tmp = middle_sort(&stacks, &buffer);
 	else
-		tmp = large_sort(&stacks);
+		tmp = large_sort(&stacks, &buffer);
+	action_buffer_flush(&buffer);
 	stacks_destroy(&stacks);
 	return (tmp);
 }
