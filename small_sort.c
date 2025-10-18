@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:54:56 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 04:36:20 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 04:42:22 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static inline void	_sort(t_stacks *s, t_action_buffer *buf)
 int	small_sort(t_stacks *s, t_action_buffer *buf)
 {
 	int	pivot;
-
 
 	pivot = stacks_len(s, STACK_A) - 3;
 	while (3 < stacks_len(s, STACK_A))

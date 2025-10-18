@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 04:34:19 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/19 04:41:58 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static const t_optimize_entry	g_optimize_entries[] = {
 {((ACT_RRR << 4 | ACT_SB) << 4 | ACT_RA) << 4 | ACT_SB, ACT_RRB},
 };
 
-static const size_t	g_optimize_entries_size
+static const size_t				g_optimize_entries_size
 	= sizeof(g_optimize_entries) / sizeof(g_optimize_entries[0]);
 
 static int	_comper(const void *a, const void *b)
