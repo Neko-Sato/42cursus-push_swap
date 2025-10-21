@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:08:11 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/18 18:19:24 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:26:20 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "optimization.h"
 #include <assert.h>
 
-int	large_sort(t_stacks *s, t_action_buffer *buf)
+int	large_sort(t_stacks *s, t_optimizer *buf)
 {
 	(void)s;
 	(void)buf;

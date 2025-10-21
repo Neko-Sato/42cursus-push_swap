@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:23:49 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 04:43:14 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/22 00:15:39 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,26 @@ typedef struct s_stacks
 
 typedef enum e_action
 {
-	ACT_NONE,
-	ACT_SA,
-	ACT_SB,
-	ACT_SS,
-	ACT_PA,
-	ACT_PB,
-	ACT_RA,
-	ACT_RB,
-	ACT_RR,
-	ACT_RRA,
-	ACT_RRB,
-	ACT_RRR,
+	MASK_NAME = 0x3,
+	MASK_ACT = 0xc,
+	ACT_NONE = 0,
+	_ACT__A = 0x1,
+	_ACT__B = 0x2,
+	_ACT_S_ = 0,
+	_ACT_P_ = 0x4,
+	_ACT_R_ = 0x8,
+	_ACT_RR_ = 0xc,
+	ACT_SA = _ACT_S_ | _ACT__A,
+	ACT_SB = _ACT_S_ | _ACT__B,
+	ACT_SS = _ACT_S_ | _ACT__A | _ACT__B,
+	ACT_PA = _ACT_P_ | _ACT__A,
+	ACT_PB = _ACT_P_ | _ACT__B,
+	ACT_RA = _ACT_R_ | _ACT__A,
+	ACT_RB = _ACT_R_ | _ACT__B,
+	ACT_RR = _ACT_R_ | _ACT__A | _ACT__B,
+	ACT_RRA = _ACT_RR_ | _ACT__A,
+	ACT_RRB = _ACT_RR_ | _ACT__B,
+	ACT_RRR = _ACT_RR_ | _ACT__A | _ACT__B,
 	_ACT_SIZE,
 }							t_action;
 

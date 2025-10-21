@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 01:42:39 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:27:02 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "stacks.h"
 
-typedef struct s_action_buffer
+typedef struct s_optimizer
 {
 	t_action		buf[8];
 	unsigned int	size;
-}					t_action_buffer;
+}					t_optimizer;
 
 typedef struct s_optimize_entry
 {
@@ -27,7 +27,7 @@ typedef struct s_optimize_entry
 	t_action		action;
 }					t_optimize_entry;
 
-void				action_buffer_put(t_action_buffer *buffer, t_action action);
-void				action_buffer_flush(t_action_buffer *buffer);
+void				optimizer_put(t_optimizer *buffer, t_action action);
+void				optimizer_flush(t_optimizer *buffer);
 
 #endif

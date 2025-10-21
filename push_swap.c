@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:35:17 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 04:39:21 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:37:19 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 #include <ft_printf.h>
 #include <unistd.h>
 
+void	do_action(t_stacks *stacks, t_optimizer *buf, t_action action)
+{
+	g_actions[action].fun(stacks);
+	optimizer_put(buf, action);
+}
+
 int	push_swap(int *arr, size_t size)
 {
-	int				tmp;
-	t_stacks		stacks;
-	t_action_buffer	buffer;
+	int			tmp;
+	t_stacks	stacks;
+	t_optimizer	buffer;
 
 	if (stacks_init(&stacks, arr, size))
 		return (1);
-	ft_memset(&buffer, 0, sizeof(t_action_buffer));
+	ft_memset(&buffer, 0, sizeof(t_optimizer));
 	tmp = 0;
 	if (!stacks_check(&stacks))
 	{
@@ -36,7 +42,7 @@ int	push_swap(int *arr, size_t size)
 		else
 			tmp = large_sort(&stacks, &buffer);
 	}
-	action_buffer_flush(&buffer);
+	optimizer_flush(&buffer);
 	stacks_destroy(&stacks);
 	return (tmp);
 }

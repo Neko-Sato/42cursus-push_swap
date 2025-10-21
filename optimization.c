@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/19 04:41:58 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:26:20 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static int	_comper(const void *a, const void *b)
 	return ((ac > bc) - (ac < bc));
 }
 
-static void	_optimize(t_action_buffer *buffer)
+static void	_optimize(t_optimizer *buffer)
 {
 	unsigned int		n;
 	unsigned int		tmp;
@@ -147,7 +147,7 @@ static void	_optimize(t_action_buffer *buffer)
 	}
 }
 
-void	action_buffer_put(t_action_buffer *buffer, t_action action)
+void	optimizer_put(t_optimizer *buffer, t_action action)
 {
 	if (action == ACT_NONE)
 		return ;
@@ -162,7 +162,7 @@ void	action_buffer_put(t_action_buffer *buffer, t_action action)
 	buffer->size--;
 }
 
-void	action_buffer_flush(t_action_buffer *buffer)
+void	optimizer_flush(t_optimizer *buffer)
 {
 	while (1)
 	{
