@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 00:02:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/21 21:27:02 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:45:04 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 typedef struct s_optimizer
 {
-	t_action		buf[8];
+	unsigned int	buf;
 	unsigned int	size;
 }					t_optimizer;
 
 typedef struct s_optimize_entry
 {
-	int				code;
+	unsigned int	code;
 	t_action		action;
 }					t_optimize_entry;
 
