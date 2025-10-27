@@ -6,7 +6,7 @@
 #    By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/24 19:05:06 by hshimizu          #+#    #+#              #
-#    Updated: 2025/10/19 03:26:46 by hshimizu         ###   ########.fr        #
+#    Updated: 2025/10/27 16:18:52 by hshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,7 @@ COMMON				:= \
 	stacks_getters.c \
 	stacks_istream.c \
 	stacks_print.c \
-	action_p.c \
-	action_r.c \
-	action_rr.c \
-	action_s.c \
-	large_sort.c \
-	middle_sort.c \
-	small_sort.c \
-	optimization.c
+	stacks_binary.c
 
 SRCS				:= main.c $(COMMON)
 SRCS_BONUS			:= main_bonus.c $(COMMON)

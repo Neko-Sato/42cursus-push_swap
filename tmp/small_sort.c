@@ -6,14 +6,14 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:54:56 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/21 21:39:57 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:49:39 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stacks.h"
 #include "push_swap.h"
 
-static int	_is_sorted(t_stacks *s, t_stackname name, int reverse)
+static int	_is_sorted(t_stacks *s, t_stackname name)
 {
 	size_t	i;
 	int		pre;
@@ -26,7 +26,7 @@ static int	_is_sorted(t_stacks *s, t_stackname name, int reverse)
 		while (i < stacks_len(s, name))
 		{
 			cur = stacks_at(s, name, i++);
-			if ((!reverse && pre > cur) || (reverse && pre < cur))
+			if (elemless(cur, pre, name))
 				return (0);
 			pre = cur;
 		}
@@ -36,28 +36,29 @@ static int	_is_sorted(t_stacks *s, t_stackname name, int reverse)
 
 static inline void	_sort(t_stacks *s, t_optimizer *buf)
 {
-	if (2 < stacks_len(s, STACK_A))
+	t_stackname	i;
+
+	i = 0;
+	while (i < _STACK_SIZE)
 	{
-		if (stacks_at(s, STACK_A, 0) > stacks_at(s, STACK_A, 1)
-			&& stacks_at(s, STACK_A, 0) > stacks_at(s, STACK_A, 2))
-			do_action(s, buf, ACT_RA);
-		else if (stacks_at(s, STACK_A, 1) > stacks_at(s, STACK_A, 0)
-			&& stacks_at(s, STACK_A, 1) > stacks_at(s, STACK_A, 2))
-			do_action(s, buf, ACT_RRA);
+		if (2 < stacks_len(s, i))
+		{
+			if (elemless(stacks_at(s, i, 1), stacks_at(s, i, 0), i)
+				&& elemless(stacks_at(s, i, 2), stacks_at(s, i, 0), i))
+				do_action(s, buf, _ACT_R_ | (1 << i));
+			else if (elemless(stacks_at(s, i, 0), stacks_at(s, i, 1), i)
+				&& elemless(stacks_at(s, i, 2), stacks_at(s, i, 1), i))
+				do_action(s, buf, _ACT_RR_ | (1 << i));
+		}
+		i++;
 	}
-	if (2 < stacks_len(s, STACK_B))
+	i = 0;
+	while (i < _STACK_SIZE)
 	{
-		if (stacks_at(s, STACK_B, 0) < stacks_at(s, STACK_B, 1)
-			&& stacks_at(s, STACK_B, 0) < stacks_at(s, STACK_B, 2))
-			do_action(s, buf, ACT_RB);
-		else if (stacks_at(s, STACK_B, 1) < stacks_at(s, STACK_B, 0)
-			&& stacks_at(s, STACK_B, 1) < stacks_at(s, STACK_B, 2))
-			do_action(s, buf, ACT_RRB);
+		if (!_is_sorted(s, i))
+			do_action(s, buf, _ACT_S_ | (1 << i));
+		i++;
 	}
-	if (!_is_sorted(s, STACK_A, 0))
-		do_action(s, buf, ACT_SA);
-	if (!_is_sorted(s, STACK_B, 1))
-		do_action(s, buf, ACT_SB);
 }
 
 int	small_sort(t_stacks *s, t_optimizer *buf)

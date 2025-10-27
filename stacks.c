@@ -6,27 +6,12 @@
 /*   By: hshimizu <hshimizu@42tokyo.student.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 18:43:26 by hshimizu          #+#    #+#             */
-/*   Updated: 2025/10/22 00:12:16 by hshimizu         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:21:08 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stacks.h"
 #include <libft.h>
-
-const t_action_entry	g_actions[_ACT_SIZE] = {
-[ACT_NONE] = {"", NULL},
-[ACT_SA] = {"sa", stacks_sa},
-[ACT_SB] = {"sb", stacks_sb},
-[ACT_SS] = {"ss", stacks_ss},
-[ACT_PA] = {"pa", stacks_pa},
-[ACT_PB] = {"pb", stacks_pb},
-[ACT_RA] = {"ra", stacks_ra},
-[ACT_RB] = {"rb", stacks_rb},
-[ACT_RR] = {"rr", stacks_rr},
-[ACT_RRA] = {"rra", stacks_rra},
-[ACT_RRB] = {"rrb", stacks_rrb},
-[ACT_RRR] = {"rrr", stacks_rrr},
-};
 
 int	stacks_init(t_stacks *stacks, int *array, size_t size)
 {
